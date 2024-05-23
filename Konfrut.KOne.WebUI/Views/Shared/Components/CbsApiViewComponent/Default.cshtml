@@ -1,0 +1,34 @@
+﻿@model KONE.WebUI.Models.CBSAPI.CbsApiViewModel
+<div class="row" style="height:1000px;">
+    <div class="col-md-4">
+        <div class="card custom-card">
+            <div class="card-header justify-content-between">
+                <div class="card-title">
+                    Adres Bilgileri
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row gy-3">
+                    <div class="col-xl-12">
+                        <div class="custom-form-group row">
+                            <label for="input-noradius" class="form-label">İller</label>
+                            <select id="selectedProvinceId" asp-for="SelectedProvinceId" class="select2 js-example-placeholder-single js-states form-control select2-hidden-accessible" asp-items="Model.Provinces">
+                            </select>
+                        </div>
+                        <div class="custom-form-group row mt-3">
+                            <label for="input-noradius" class="form-label">İlçeler</label>
+                            <select id="selectedDistrictId" asp-for="SelectedDistrictId" class="select2 js-example-placeholder-single js-states form-control select2-hidden-accessible" >
+                                <option value="">Lütfen İlçe Seçiniz</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-8">
+        <div id="map"></div>
+    </div>
+</div>
+@*<script src="~/js/cbsapiinitialize.js"></script>*@

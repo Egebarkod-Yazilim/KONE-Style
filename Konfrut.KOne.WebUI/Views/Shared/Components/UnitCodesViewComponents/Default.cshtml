@@ -1,0 +1,41 @@
+﻿<div class="accordion mt-2" id="accordionDistrict_1">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="SolidTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#SolidTwoCollapse" aria-expanded="false" aria-controls="collapsePrimarySolidTwo">
+                <i class="bi bi-house-fill mr-2"></i>  Yeni köy Oluştur
+            </button>
+        </h2>
+        <div id="SolidTwoCollapse" class="accordion-collapse collapse" aria-labelledby="SolidTwo" data-bs-parent="#accordionDistrict_1" style="">
+            <div class="accordion-body">
+                <div class="mb-3">
+                    <div class="custom-form-group">
+                    <select class="js-example-placeholder-single js-states form-control select2-hidden-accessible">
+                        <option value="st-1" selected="" data-select2-id="select2-data-10-0bpk">Texas</option>
+                        <option value="st-2" data-select2-id="select2-data-87-3oas">Georgia</option>
+                        <option value="st-3" data-select2-id="select2-data-88-zcya">California</option>
+                        <option value="st-4" data-select2-id="select2-data-89-apx0">Washington D.C</option>
+                        <option value="st-5" data-select2-id="select2-data-90-vybo">Virginia</option>
+                    </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit"><span class="bi bi-check"></span> Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="accordion mt-2" id="accordionDistrict_2">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingPrimarySolidTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrimarySolidTwo" aria-expanded="false" aria-controls="collapsePrimarySolidTwo">
+                <i class="bi bi-pin-map-fill"></i> İller
+            </button>
+        </h2>
+        <div id="collapsePrimarySolidTwo" class="accordion-collapse collapse" aria-labelledby="headingPrimarySolidTwo" data-bs-parent="#accordionDistrict_2" style="">
+            <div class="accordion-body">
+                @await Component.InvokeAsync("ProvinceListViewComponent")
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,29 @@
+﻿<div class="container mt-4">
+    <!-- İlk Card -->
+    <div class="card">
+        <div class="card-header" id="cardHeaderOne"  data-bs-toggle="">
+            <i class="bi bi-building"></i> Yeni Depo Oluştur
+        </div>
+        <div class="card-body collapse" id="cardBodyOne">
+            <div class="mb-3">
+                <label for="depoAdi" class="form-label fs-14 text-dark">Depo Adı</label>
+                <input type="text" class="form-control" id="depoAdi" placeholder="Depo Adı">
+            </div>
+            <div class="mb-3">
+                <label for="depoKodu" class="form-label fs-14 text-dark">Depo Kodu</label>
+                <input type="text" class="form-control" id="depoKodu" placeholder="Depo Kodu">
+            </div>
+            <button class="btn btn-primary" type="submit"><span class="bi bi-check"></span> Kaydet</button>
+        </div>
+    </div>
+
+    <!-- İkinci Card -->
+    <div class="card mt-2">
+        <div class="card-header" id="cardHeaderTwo">
+            <i class="bi bi-building"></i> Depolar
+        </div>
+        <div class="card-body collapse" id="cardBodyTwo">
+            @await Component.InvokeAsync("ProvinceListViewComponent")
+        </div>
+    </div>
+</div>

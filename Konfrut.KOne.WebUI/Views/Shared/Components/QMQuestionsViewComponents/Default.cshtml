@@ -1,0 +1,41 @@
+﻿
+<div class="accordion mt-2" id="accordionDistrict_1">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="SolidTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#SolidTwoCollapse" aria-expanded="false" aria-controls="collapsePrimarySolidTwo">
+                <i class="bi bi-pin-map-fill"></i> Yeni İlçe Oluştur
+            </button>
+        </h2>
+        <div id="SolidTwoCollapse" class="accordion-collapse collapse" aria-labelledby="SolidTwo" data-bs-parent="#accordionDistrict_1" style="">
+            <div class="accordion-body">
+                <div class="mb-3">
+                    <label for="form-text" class="form-label fs-14 text-dark">İl Adı</label>
+                    <input type="text" class="form-control" id="form-text" placeholder="İl Adı">
+                </div>
+                <div class="mb-3">
+                    <label for="form-password" class="form-label fs-14 text-dark">
+                        İlçe Adı
+                    </label>
+                    <input type="text" class="form-control" id="form-text" placeholder="İlçe Adı">
+                </div>
+                <button class="btn btn-primary" type="submit"><span class="bi bi-check"></span> Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="accordion mt-2" id="accordionDistrict_2">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingPrimarySolidTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrimarySolidTwo" aria-expanded="false" aria-controls="collapsePrimarySolidTwo">
+                <i class="bi bi-pin-map-fill"></i> İlçeler
+            </button>
+        </h2>
+        <div id="collapsePrimarySolidTwo" class="accordion-collapse collapse" aria-labelledby="headingPrimarySolidTwo" data-bs-parent="#accordionDistrict_2" style="">
+            <div class="accordion-body">
+                @await Component.InvokeAsync("ProvinceListViewComponent")
+            </div>
+        </div>
+    </div>
+</div>
+

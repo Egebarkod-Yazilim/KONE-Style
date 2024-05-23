@@ -1,0 +1,156 @@
+﻿@model PagedList.PagedList<Konfrut.Entity.Concrete.Product>
+@{
+    Layout = "_Layout";
+}
+
+@await Html.PartialAsync("_Breadcrumb", new Konfrut.KOne.WebUI.Models.BreadCrumb.BreadCrumbViewModel
+{
+    HeaderTitle = "Tanımlamalar",
+    PageNames = new List<string>() { "Anasayfa", "Tanımlamalar" },
+    Url = "/Home/Defines"
+})
+<div class="row">
+    <div class="col-xxl-4 col-xl-12">
+        <div class="card custom-card overflow-hidden shadow">
+            <div class="card-header justify-content-between">
+                <div class="card-title">
+                    <h5><i class="bi bi-journal-bookmark-fill"></i> Tanımlamalar</h5>
+                </div>
+
+            </div>
+            <div class="card-body p-0">
+                <div class="list-group">
+                    <button id="illerButton" type="button" class="list-group-item list-group-item-action active" aria-current="true"><i class="bi bi-map-fill"></i> İller</button>
+                    <button id="ilcelerButton" type="button" class="list-group-item list-group-item-action"><i class="bi bi-pin-map-fill"></i> İlçeler</button>
+                    <button id="villagesButton" type="button" class="list-group-item list-group-item-action"><i class="bi bi-house-fill"></i> Köyler</button>
+                    <button id="neighbourhoodButton" type="button" class="list-group-item list-group-item-action"><i class="bi bi-house-heart-fill"></i> Mahalle</button>
+                    <button id="countriesButton" type="button" class="list-group-item list-group-item-action"><i class="bi bi-flag-fill"></i> Ülke Tanımla </button>
+                    <button id="platesButton" type="button" class="list-group-item list-group-item-action"><i class="bi bi-card-text"></i>  Plaka Tanımla </button>
+                    <button id="facilitiesButton" type="button" class="list-group-item list-group-item-action"><i class="bi bi-building"></i> Fabrikalar</button>
+                    <button id="productTypeButton" type="button" class="list-group-item list-group-item-action"><i class="bi bi-box2-fill"></i> Ürün Tipleri</button>
+                    <button id="colorTypesButton" type="button" class="list-group-item list-group-item-action"><i class="bi bi-collection-fill"></i> Renk Kod Tanımla</button>
+                    <button id="qmsControlButton" type="button" class="list-group-item list-group-item-action"><i class="bi bi-patch-question-fill"></i> Kalite Kontrol Soruları</button>
+                    <button id="tasteButton" type="button" class="list-group-item list-group-item-action"><i class="bi bi-menu-app-fill"></i> Tadım Kodu Tanımla </button>
+                    <button id="unitButton" type="button" class="list-group-item list-group-item-action"><i class="bi bi-key-fill"></i> Birim Tanımla </button>
+                    <button id="settingsButton" type="button" class="list-group-item list-group-item-action"><i class="bi bi-gear-fill"></i> Ayar Tanımla </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xxl-8 col-xl-12">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card custom-card">
+                    <div class="card-body p-0 definesections">
+                        @await Component.InvokeAsync("ProvinceDefineViewComponents")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Styles{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}
+@section Scripts{
+    <script src="~/Theme/HTML/dist/assets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js"></script>
+    <script src="~/Theme/HTML/dist/assets/libs/filepond-plugin-file-encode/filepond-plugin-file-encode.min.js"></script>
+    <script src="~/Theme/HTML/dist/assets/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js"></script>
+    <script src="~/Theme/HTML/dist/assets/libs/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js"></script>
+    <script src="~/Theme/HTML/dist/assets/libs/filepond-plugin-image-crop/filepond-plugin-image-crop.min.js"></script>
+    <script src="~/Theme/HTML/dist/assets/libs/filepond-plugin-image-edit/filepond-plugin-image-edit.min.js"></script>
+    <script src="~/Theme/HTML/dist/assets/libs/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js"></script>
+    <script src="~/Theme/HTML/dist/assets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js"></script>
+    <script src="~/Theme/HTML/dist/assets/libs/filepond-plugin-image-resize/filepond-plugin-image-resize.min.js"></script>
+    <script src="~/Theme/HTML/dist/assets/libs/filepond-plugin-image-transform/filepond-plugin-image-transform.min.js"></script>
+    <script src="~/Theme/HTML/dist/assets/libs/filepond/filepond.min.js"></script>
+    <script src="~/Theme/HTML/dist/assets/libs/flatpickr/flatpickr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function () {
+            $(".list-group-item").click(function () {
+                $(".list-group-item").removeClass("active");
+                $(this).addClass("active");
+            });
+
+            $("#illerButton").click(function () {
+                $.get("/Define/Provinces", function (data) {
+                    $(".definesections").html(data);
+                });
+            });
+
+            $("#ilcelerButton").click(function () {
+                $.get("/Define/Districts", function (data) {
+                    $(".definesections").html(data);
+                });
+            });
+
+
+            $("#productTypeButton").click(function () {
+                $.get("/Define/ProductTypes", function (data) {
+                    $(".definesections").html(data);
+                });
+            });
+
+            $("#neighbourhoodButton").click(function () {
+                $.get("/Define/Neighbourhood", function (data) {
+                    $(".definesections").html(data);
+                });
+            });
+
+            $("#villagesButton").click(function () {
+                $.get("/Define/Villages", function (data) {
+                    $(".definesections").html(data);
+                });
+            });
+
+            $("#countriesButton").click(function () {
+                $.get("/Define/Countries", function (data) {
+                    $(".definesections").html(data);
+                });
+            });
+
+            $("#platesButton").click(function () {
+                $.get("/Define/Plates", function (data) {
+                    $(".definesections").html(data);
+                });
+            });
+
+            $("#facilitiesButton").click(function () {
+                $.get("/Define/Facilities", function (data) {
+                    $(".definesections").html(data);
+                });
+            });
+
+            $("#colorTypesButton").click(function () {
+                $.get("/Define/ColorTypes", function (data) {
+                    $(".definesections").html(data);
+                });
+            });
+
+            $("#qmsControlButton").click(function () {
+                $.get("/Define/QualityManagementQuestions", function (data) {
+                    $(".definesections").html(data);
+                });
+            });
+
+            $("#tasteButton").click(function () {
+                $.get("/Define/TasteTypes", function (data) {
+                    $(".definesections").html(data);
+                });
+            });
+
+            $("#unitButton").click(function () {
+                $.get("/Define/UnitTypes", function (data) {
+                    $(".definesections").html(data);
+                });
+            });
+
+            $("#settingsButton").click(function () {
+                $.get("/Define/Settings", function (data) {
+                    $(".definesections").html(data);
+                });
+            });
+        });
+    </script>
+}
