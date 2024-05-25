@@ -15,6 +15,18 @@
             public Properties properties { get; set; }
         }
 
+        public class PolygonModel
+        {
+            public string Type { get; set; }
+            public List<List<List<double>>> Coordinates { get; set; }
+        }
+
+        public class MultiPolygonModel
+        {
+            public string Type { get; set; }
+            public List<List<List<List<double>>>> Coordinates { get; set; }
+        }
+
         public class Geometry
         {
             public string type { get; set; }

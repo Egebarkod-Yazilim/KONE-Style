@@ -12,6 +12,7 @@ namespace Konfrut.DataAccess.Konfrut.Concrete
         DbSet<Product> Products { get; set; }
         DbSet<Province> Provinces { get; set; }
         DbSet<District> Districts { get; set; }
+        DbSet<Village> Villages { get; set; }
         DbSet<Coordinates> Coordinates { get; set; }
         public KonfrutContext(DbContextOptions<KonfrutContext> options) : base(options)
         {
@@ -23,6 +24,7 @@ namespace Konfrut.DataAccess.Konfrut.Concrete
             builder.ApplyConfiguration(new ProductConfiguraiton());
             builder.ApplyConfiguration(new ProvincesConfiguraiton());
             builder.ApplyConfiguration(new DistrictsConfiguraiton());
+            builder.ApplyConfiguration(new VillagesConfiguraiton());
             builder.ApplyConfiguration(new CoordinatesConfiguraiton());
 
         }

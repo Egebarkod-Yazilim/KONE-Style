@@ -1,5 +1,6 @@
 ﻿using KONE.Business.CBSAPI;
 using KONE.WebUI.Models.CBSAPI;
+using Konfrut.DataAccess.Konfrut.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KONE.WebUI.ViewComponents
@@ -10,12 +11,14 @@ namespace KONE.WebUI.ViewComponents
     {
         #region Fields
         private readonly ICbsApiService _cbsApiService;
+        private readonly IUnitOfWork _unitOfWork;
         #endregion
 
         #region Ctor
-        public CbsApiViewComponent(ICbsApiService cbsApiService)
+        public CbsApiViewComponent(ICbsApiService cbsApiService, IUnitOfWork unitOfWork)
         {
             _cbsApiService = cbsApiService;
+            _unitOfWork = unitOfWork;
         }
         #endregion
 
@@ -24,15 +27,30 @@ namespace KONE.WebUI.ViewComponents
         {
             var newCbsApiModel = new CbsApiViewModel();
 
-            var provinces = await _cbsApiService.GetProvinceList();
+            var provinces = await _unitOfWork.Province.GetAllAsync();
 
-            if (provinces.features != null)
+            if (provinces.Count > 0)
             {
-                foreach (var province in provinces.features)
+
+                foreach (var province in provinces)
                 {
-                    newCbsApiModel.Provinces.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(province.properties.text, province.properties.id.ToString()));
+                    newCbsApiModel.Provinces.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(province.Name, province.PropertyId.ToString()));
                 }
             }
+            else
+            {
+                var provincesFromApi = await _cbsApiService.GetProvinceList();
+
+                if (provincesFromApi.features != null)
+                {
+                    foreach (var province in provincesFromApi.features)
+                    {
+                        newCbsApiModel.Provinces.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(province.properties.text, province.properties.id.ToString()));
+                    }
+                }
+            }
+
+
 
 
             return View(newCbsApiModel);

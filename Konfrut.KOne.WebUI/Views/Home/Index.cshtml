@@ -10,38 +10,10 @@
     Url = "/Admin/Home/Index"
 })
 
+<div id="toastContainer"></div>
 <div class="row">
     <div class="col-md-12">
-        <div class="card custom-card shadow">
-            <div class="card-header justify-content-between">
-                <div class="card-title">
-                    <span class="ri-product-hunt-fill"></span> Ürünler
-                </div>
-            </div>
-            <!--<div class="card-body">
-        <div class="table-responsive">
-            <table id="datatable" class="table table-bordered text-nowrap w-100">
-                <thead>
-                    <tr>
-                        <th class="nonsearchable" style="width:10px;">
-                            <div class="form-check form-check-md d-flex align-items-center">
-                                <input class="form-check-input" type="checkbox" value="" id="checkebox-md">
-                            </div>
-                        </th>
-                        <th class="nonsearchable">#</th>
-                        <th>Ürün Adı</th>
-                        <th>Ürün Açıklama</th>
-                        <th>Fiyat</th>
-                        <th>Miktar</th>
-                        <th class="nonsearchable">Aktiflik</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-    </div>-->
-        </div>
+     
     </div>
 </div>
 
@@ -49,20 +21,13 @@
 
 
 @section Styles{
-    <link href="~/Theme/HTML/dist/assets/libs/datatables.net-bs5/css/datatables.bootstrap5.css" rel="stylesheet" />
-    <link href="~/Theme/HTML/dist/assets/libs/datatables.net-bs5/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-1
 }
 @section Scripts{
-    <script src="~/Theme/HTML/dist/assets/libs/datatables.net-bs5/js/datatable.js"></script>
-    <script src="~/Theme/HTML/dist/assets/libs/datatables.net-bs5/js/datatable-bootstrap.js"></script>
-    <script src="~/Theme/HTML/dist/assets/libs/datatables.net-bs5/js/bootstrap-bundle-min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
         $(document).ready(function () {
+
             //$('#datatable thead tr').clone(true).appendTo('#datatable thead');
             var datatable = $('#datatable').DataTable({
                 "ajax": {
@@ -92,9 +57,9 @@
                             if (data === true) {
                                 return '<span class="badge bg-success-transparent"><svg class="flex-shrink-0 me-2 svg-success" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 24 24" width="1rem" fill="#000000"><path d="M0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none"></path><path d="M16.59 7.58L10 14.17l-3.59-3.58L5 12l5 5 8-8zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path></svg> Evet</span>';
                             } else if (data === false) {
-                                return '<span class="badge bg-danger-transparent"><svg class="flex-shrink-0 me-2 svg-danger" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="1rem" viewBox="0 0 24 24" width="1rem" fill="#000000"><g><rect fill="none" height="24" width="24"></rect></g><g><g><g><path d="M15.73,3H8.27L3,8.27v7.46L8.27,21h7.46L21,15.73V8.27L15.73,3z M19,14.9L14.9,19H9.1L5,14.9V9.1L9.1,5h5.8L19,9.1V14.9z"></path><rect height="6" width="2" x="11" y="7"></rect><rect height="2" width="2" x="11" y="15"></rect></g></g></g></svg> Hayır</span>';
+                                return '<span class="badge bg-warning-transparent"><svg class="flex-shrink-0 me-2 svg-warning" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="1rem" viewBox="0 0 24 24" width="1rem" fill="#000000"><g><rect fill="none" height="24" width="24"></rect></g><g><g><g><path d="M15.73,3H8.27L3,8.27v7.46L8.27,21h7.46L21,15.73V8.27L15.73,3z M19,14.9L14.9,19H9.1L5,14.9V9.1L9.1,5h5.8L19,9.1V14.9z"></path><rect height="6" width="2" x="11" y="7"></rect><rect height="2" width="2" x="11" y="15"></rect></g></g></g></svg> Hayır</span>';
                             } else {
-                                return '<span class="badge bg-danger-transparent">Hayır</span>';
+                                return '<span class="badge bg-warning-transparent">Hayır</span>';
                             }
                         }
                     },
@@ -146,15 +111,42 @@
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
-            
+
+
             var geojsonLayer;
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
             $('#selectedProvinceId').change(function () {
+               
+
+                toastr.info('Bu işlem biraz vakit alabilir. Sistemde olmayan veriler Tapu kadastro parsel sorgulama sistmeinden çekilirken, olan veriler sistemden çekilmektedir. İşlem bitince ilçeler dolacaktır.','Veriler Çekiliyor!');
+
+                var selectElement1 = $('#selectedDistrictId');
+                selectElement1.empty();
+                var selectElement2 = $('#selectedVillageId');
+                selectElement2.empty();
+
                 var selectedId = $(this).val();
                 // Fetch city data from API
                 $.ajax({
-                    url: '/Home/ProvinceList', // Replace with your API endpoint
+                    url: '/Home/GetProvinceCoordinates', // API endpoint
                     data: { provinceId: selectedId },
                     method: 'GET',
                     success: function (response) {
@@ -163,31 +155,30 @@
                             map.removeLayer(geojsonLayer);
                         }
 
-                        // Get coordinates from response
-                        var coordinates = response.geometry.coordinates;
-
                         // Draw polygons
-                        var geojsonFeature = {
-                            "type": "Feature",
-                            "geometry": {
-                                "type": "Polygon",
-                                "coordinates": coordinates
-                            }
-                        };
+                        var geojsonFeature = response;
 
                         geojsonLayer = L.geoJSON(geojsonFeature, {
                             style: function (feature) {
+                                console.log(feature);
                                 return {
                                     fillColor: '#FF0000', // Change fill color as needed
-                                    weight: 2,
+                                    weight: 1,
                                     opacity: 1,
                                     color: 'red',
                                     fillOpacity: 0.1
                                 };
                             }
                         }).addTo(map);
+
+                        // Zoom to fit the bounds of the drawn polygon
+                        map.fitBounds(geojsonLayer.getBounds());
+
+                        
                     },
                     error: function (error) {
+                        toastr.warning('İl kordinatları getirilemedi.', 'İşlem Başarısız!');
+
                         console.error('Error fetching city data:', error);
                     }
                 });
@@ -216,22 +207,187 @@
                                 selectElement.append(option);
                             }
                         });
+
+                        toastr.success('İlçeler getirildi. Lütfen ilçe seçerek ilerleyiniz.', 'İşlem Başarılı!');
                     },
                     error: function (error) {
+                        toastr.warning('İlçeler getirilemedi.', 'İşlem Başarısız!');
                         console.error('Error fetching city data:', error);
                     }
                 });
-
             });
 
 
 
+            $('#selectedDistrictId').change(function () {
+                toastr.info('Bu işlem biraz vakit alabilir. Sistemde olmayan veriler Tapu kadastro parsel sorgulama sistmeinden çekilirken, olan veriler sistemden çekilmektedir. İşlem bitince mahalleler dolacaktır.', 'Veriler Çekiliyor!');
 
-            document.getElementById('selectedProvinceId').addEventListener('change', function () {
-                var selectedIl = this.value;
-                if (selectedIl) {
-                    loadGeoJSON(selectedIl);
-                }
+                var selectedId = $(this).val();
+                // Fetch city data from API
+                $.ajax({
+                    url: '/Home/GetDistrictCoordinates', // API endpoint
+                    data: { districtId: selectedId },
+                    method: 'GET',
+                    success: function (response) {
+                        // Clear previous layers if any
+                        if (geojsonLayer && map.hasLayer(geojsonLayer)) {
+                            map.removeLayer(geojsonLayer);
+                        }
+
+                        // Draw polygons
+                        var geojsonFeature = response;
+
+                        geojsonLayer = L.geoJSON(geojsonFeature, {
+                            style: function (feature) {
+                                console.log(feature);
+                                return {
+                                    fillColor: '#FF0000', // Change fill color as needed
+                                    weight: 1,
+                                    opacity: 1,
+                                    color: 'red',
+                                    fillOpacity: 0.1
+                                };
+                            }
+                        }).addTo(map);
+
+                        // Zoom to fit the bounds of the drawn polygon
+                        map.fitBounds(geojsonLayer.getBounds());
+                    },
+                    error: function (error) {
+                        toastr.warning('İlçe Kordinatları getirilemedi.', 'İşlem Başarısız!');
+
+                        console.error('Error fetching city data:', error);
+                    }
+                });
+
+
+                $.ajax({
+                    url: '/Home/VillageList', // Replace with your API endpoint
+                    data: { districtId: selectedId },
+                    method: 'GET',
+                    success: function (response) {
+                        console.log(response);
+
+                        var selectElement = $('#selectedVillageId');
+                        selectElement.empty();
+
+                        var features = response.features; // Veri dizisi
+
+                        // Her bir öğe için döngü
+                        features.forEach(function (feature) {
+                            var id = feature.properties.id; // İlçe ID'si
+                            var text = feature.properties.text; // İlçe adı
+
+                            // Eğer ilçe adı null değilse, dropdown listesine ekle
+                            if (text !== null) {
+                                var option = $('<option></option>').attr('value', id).text(text);
+                                selectElement.append(option);
+                            }
+                        });
+
+                        toastr.success('Mahalleler getirildi. Lütfen ilçe seçerek ilerleyiniz.', 'İşlem Başarılı!');
+                    },
+                    error: function (error) {
+                        toastr.warning('Mahalleler getirilemedi.', 'İşlem Başarısız!');
+
+                        console.error('Error fetching city data:', error);
+                    }
+                });
+            });
+
+
+
+            $('#selectedVillageId').change(function () {
+                var selectedId = $(this).val();
+                // Fetch city data from API
+                $.ajax({
+                    url: '/Home/GetVillageCoordinates', // API endpoint
+                    data: { villageId: selectedId },
+                    method: 'GET',
+                    success: function (response) {
+                        // Clear previous layers if any
+                        if (geojsonLayer && map.hasLayer(geojsonLayer)) {
+                            map.removeLayer(geojsonLayer);
+                        }
+
+                        // Draw polygons
+                        var geojsonFeature = response;
+
+                        geojsonLayer = L.geoJSON(geojsonFeature, {
+                            style: function (feature) {
+                                console.log(feature);
+                                return {
+                                    fillColor: '#FF0000', // Change fill color as needed
+                                    weight: 1,
+                                    opacity: 1,
+                                    color: 'red',
+                                    fillOpacity: 0.1
+                                };
+                            }
+                        }).addTo(map);
+
+                        // Zoom to fit the bounds of the drawn polygon
+                        map.fitBounds(geojsonLayer.getBounds());
+                    },
+                    error: function (error) {
+                        toastr.warning('Mahalle/Köy Kordinatları getirilemedi.', 'İşlem Başarısız!');
+                        console.error('Error fetching city data:', error);
+                    }
+                });
+            });
+
+            $('#submitparcelformbutton').click(function (event) {
+                console.log("tiklandi.");
+                var villageId = $('#selectedVillageId').val();
+                var parcelNo = $('#ParcelNo').val();
+                var LandNo = $('#LandNo').val();
+                $.ajax({
+                    url: '/Home/GetParcelCoordinates', // API endpoint
+                    data: { villageId: villageId, LandNo: LandNo, parcel: parcelNo },
+                    method: 'GET',
+                    success: function (response) {
+                        console.log(response);
+
+                        if (response.resultStatus === 1) {
+                            toastr.warning('Parsel alanı bulunamadı.', 'İşlem Başarısız!');
+
+                        } else {
+                            // Clear previous layers if any
+                            if (geojsonLayer && map.hasLayer(geojsonLayer)) {
+                                map.removeLayer(geojsonLayer);
+                            }
+
+                            // Draw polygons
+                            var geojsonFeature = response.data;
+
+                            geojsonLayer = L.geoJSON(geojsonFeature, {
+                                style: function (feature) {
+                                    console.log(feature);
+                                    return {
+                                        fillColor: '#FF0000', // Change fill color as needed
+                                        weight: 1,
+                                        opacity: 1,
+                                        color: 'red',
+                                        fillOpacity: 0.1
+                                    };
+                                }
+                            }).addTo(map);
+
+                            // Zoom to fit the bounds of the drawn polygon
+                            map.fitBounds(geojsonLayer.getBounds());
+
+                            toastr.success('Ada/Parsel sorgusu başarıyla gerçekleştirilmiştir.', 'İşlem Başarılı!');
+
+                        }
+
+                        
+                    },
+                    error: function (error) {
+                        toastr.warning('Parsel alanı bulunamadı.', 'İşlem Başarısız!');
+
+                        console.error('Error fetching city data:', error);
+                    }
+                });
             });
         });
     </script>

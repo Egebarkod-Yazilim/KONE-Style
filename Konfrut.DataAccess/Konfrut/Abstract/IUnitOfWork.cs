@@ -8,6 +8,7 @@ namespace Konfrut.DataAccess.Konfrut.Abstract
         IProductRepository Product { get; }
         IDistrictRepository District { get; }
         IProvinceRepository Province { get; }
+        IVillageRepository Village { get; }
         ICoordinatesRepository Coordinates { get; }
         Task<int> SaveAsync();
     }

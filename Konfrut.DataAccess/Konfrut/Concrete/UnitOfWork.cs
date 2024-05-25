@@ -12,6 +12,7 @@ namespace Konfrut.DataAccess.Konfrut.Concrete
         private readonly IDistrictRepository _districtRepository;
         private readonly IProvinceRepository _provinceRepository;
         private readonly ICoordinatesRepository _coordinatesRepository;
+        private readonly IVillageRepository _villageRepository;
         #endregion
 
         #region Ctor
@@ -32,6 +33,8 @@ namespace Konfrut.DataAccess.Konfrut.Concrete
         public IProvinceRepository Province => _provinceRepository ?? new ProvinceRepository(_KonfrutContext);
 
         public ICoordinatesRepository Coordinates => _coordinatesRepository ?? new CoordinatesRepository(_KonfrutContext);
+
+        public IVillageRepository Village => _villageRepository ?? new VillageRepository(_KonfrutContext);
 
         public void Dispose()
         {
