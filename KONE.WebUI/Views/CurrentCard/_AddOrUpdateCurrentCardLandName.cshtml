@@ -1,0 +1,38 @@
+﻿@model KONE.Entities.Concrete.CurrentCardLandName
+<div class="modal fade" id="addorupdatemodal" tabindex="-1"
+     aria-labelledby="addorupdatemodalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="addorupdatemodalLabel1"><span class="ri-map-fill"></span> Adres Ekleme Alanı</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addorupdatecurrentcardlandnameform" asp-controller="CurrentCard" asp-action="AddOrUpdateCurrentCardLandName" method="post">
+                    <input type="hidden" asp-for="Id" value="@Model.Id" />
+                    <input type="hidden" asp-for="CurrentCardId" value="@Model.CurrentCardId" />
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Alan Adı</label>
+                            <input type="text" class="form-control" placeholder="Alan Adı" aria-label="Alan Adı" asp-for="@Model.Name">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Açıklaması</label>
+                            <input type="text" class="form-control" placeholder="Açıklama" aria-label="Açıklama" asp-for="@Model.Description">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                    Kapat
+                </button>
+                <button type="button" id="saveaddorupdatecurrentcardlandname" class="btn btn-primary">
+                    Kaydet
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

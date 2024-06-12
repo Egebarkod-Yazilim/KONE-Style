@@ -1,0 +1,48 @@
+﻿@model KONE.Entities.Dtos.CurrentCard.CurrentCardAddressList
+<div class="table-responsive">
+    <table id="currentCardAddressdatatable" class="table table-bordered text-nowrap w-100">
+        <thead>
+            <tr>
+                <th class="nonsearchable" style="width:10px;">
+                    <div class="form-check form-check-md d-flex align-items-center">
+                        <input class="form-check-input" type="checkbox" value="" id="checkebox-md">
+                    </div>
+                </th>
+                <th>Başlık</th>
+                <th>Ülke</th>
+                <th>İl</th>
+                <th>İlçe</th>
+                <th>Köy</th>
+                <th class="nonsearchable"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Addresses)
+            {
+                <tr>
+                    <td> <input class="form-check-input" type="checkbox" value="" id="checkebox-md"></td>
+                    <td>@item.Title</td>
+                    <td>@item.Country.Name</td>
+                    <td>@item.Province.Name</td>
+                    <td>@item.District.Name</td>
+                    <td>@item.Village.Name</td>
+                    <td>
+                        <div class="hstack gap-2">
+                            <a aria-label="anchor" href="your_download_url/' + @item.Id + '" class="btn btn-icon btn-wave waves-effect waves-light btn-sm btn-success-light">
+                                <i class="ri-download-2-line"></i>
+                            </a>
+                            <a aria-label="anchor" asp-controller="CurrentCard" asp-action="AddOrUpdateCurrentCardAddress" asp-route-currentcardid="@Model.CurrentCardId"  asp-route-addressid="@item.Id" class="btn btn-icon btn-wave waves-effect waves-light btn-sm btn-primary-light">
+                                <i class="ri-edit-line"></i>
+                            </a>
+                            <button type="button" data-id="@item.Id" data-villageid="@item.Village.PropertyId" data-land="@item.BlockIsland" data-parcel="@item.Parcel" class="btn btn-icon btn-wave waves-effect waves-light btn-sm btn-warning-light addtomap">
+                                <i class="ri-radar-fill"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script src="~/js/currentcardaddresses.js" defer></script>

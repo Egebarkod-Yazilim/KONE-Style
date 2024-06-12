@@ -1,0 +1,646 @@
+﻿@model KONE.Entities.Dtos.CurrentCard.AddOrUpdateCurrentCardAddress
+@{
+    Layout = "_Layout";
+}
+@await Html.PartialAsync("_Breadcrumb", new KONE.KOne.WebUI.Models.BreadCrumb.BreadCrumbViewModel
+{
+    HeaderTitle = "Cari Kart Adresi",
+    PageNames = new List<string>() { "Admin", "Anasayfa", "Index", "Cari Kart Adresi" },
+    Url = "/Admin/Home/Index"
+})
+
+<div class="col-12">
+    <div class="card custom-card shadow">
+        <div class="card-header justify-content-between">
+            <div class="card-title">
+                <div class="card-title">
+                    <span class="bi bi-people-fill"></span>
+                    @if (Model.CurrentCardId != 0)
+                    {@("Cari Kart Adresi Güncelleniyor...")}
+                    else
+                    { @("Cari Kart Adresi Oluşturuluyor...")}
+                </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+                <button id="savebutton" type="button" class="btn btn-success btn-wave waves-effect waves-light"><span class="bi bi-check-all"></span> Kaydet</button>
+                <button id="fetchInformationsCurrentCardbutton" data-id="@Model.CurrentCardId" type="button" class="btn btn-primary btn-wave waves-effect waves-light"><span class="bi bi-person"></span> Cari Eşle</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <form id="currentcardaddressform" asp-controller="CurrentCard" asp-action="AddOrUpdateCurrentCardAddress" method="post">
+                <input type="hidden" asp-for="CurrentCardId" value="@Model.CurrentCardId" />
+                <input type="hidden" asp-for="AddressId" value="@Model.AddressId" />
+                <input type="hidden" asp-for="LandNameId" value="@Model.LandNameId" />
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="card">
+                            <div class="card-header konfrut-backgroundcolor-important">
+                                <h6><span class="bi bi-person-fill"></span> Kişisel Bilgiler</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Adı</label>
+                                        <input type="text" class="form-control" placeholder="Adı" aria-label="Adı" asp-for="@Model.FirstName">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Soyadı</label>
+                                        <input type="text" class="form-control" placeholder="Soyadı" aria-label="Soyadı" asp-for="@Model.LastName">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">E-posta</label>
+                                        <input type="text" class="form-control" placeholder="E-posta" aria-label="E-posta" asp-for="@Model.Email">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Telefon</label>
+                                        <input type="text" class="form-control" placeholder="E-posta" aria-label="E-posta" asp-for="@Model.PhoneNumber">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <div class="card">
+                            <div class="card-header konfrut-backgroundcolor-important">
+                                <h6><span class="bi bi-building"></span> Şirket Bilgiler</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Şirket Adı</label>
+                                        <input type="text" class="form-control" placeholder="Şirket Adı" aria-label="Şirket Adı" asp-for="@Model.CompanyName">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <div class="card">
+                            <div class="card-header konfrut-backgroundcolor-important">
+                                <h6><span class="bi bi-pin-map-fill"></span> Adres Bilgiler</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <label class="form-label">Adres Başlığı</label>
+                                        <input type="text" class="form-control" placeholder="Adres Başlığı" aria-label="Adı" asp-for="@Model.Title">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Ülke</label>
+                                        <select asp-for="CountryId" class="select2 form-control" asp-items="Model.Countries">
+                                            <option selected value="@Model.Countries.Where(c => c.Selected).FirstOrDefault().Value"> @Model.Countries.Where(c => c.Selected).FirstOrDefault().Text</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">İl</label>
+                                        <select id="selectedProvinceId" asp-for="ProvinceId" class="select2 form-control" asp-items="Model.Provinces">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">İlçe</label>
+                                        <select id="selectedDistrictId" asp-for="DistrictId" class="select2 form-control" asp-items="Model.Districts">
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Mahalle/Köy</label>
+                                        <select id="selectedVillageId" asp-for="VillageId" class="select2 form-control" asp-items="Model.Villages">
+                                        </select>
+                                    </div>
+                                 
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Ada</label>
+                                        <input id="land" type="text" class="form-control" placeholder="Ada" aria-label="Ada" asp-for="@Model.BlockIsland">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Parsel</label>
+                                        <input id="parcel" type="text" class="form-control" placeholder="Parsel" aria-label="Parsel" asp-for="@Model.Parcel">
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <button id="submitparcelformbutton" type="button" class="btn btn-success"><span class="bi bi-search"></span> Bilgileri Getir</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-3">
+                                                <label class="form-label">Adres Detay</label>
+                                                <input type="text" class="form-control" placeholder="Adres Detay" aria-label="Adres Detay" asp-for="@Model.AddressDetail">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Tapu Alanı</label>
+                                                <input type="text" class="form-control" placeholder="Tapu Alanı" aria-label="Tapu Alanı" asp-for="@Model.TitleDeedArea" readonly>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Nitelik</label>
+                                                <input type="text" class="form-control" placeholder="Nitelik" aria-label="Nitelik" asp-for="@Model.Property" readonly>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Konum</label>
+                                                <input type="text" class="form-control" placeholder="Konum" aria-label="Konum" asp-for="@Model.Location" readonly>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Zemin Tipi</label>
+                                                <input type="text" class="form-control" placeholder="Zemin Tipi" aria-label="Zemin Tipi" asp-for="@Model.FloorType" readonly>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Pafta</label>
+                                                <input type="text" class="form-control" placeholder="Zemin" aria-label="Zemin" asp-for="@Model.Sheet" readonly>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Posta Kodu</label>
+                                                <input type="text" class="form-control" placeholder="Posta Kodu" aria-label="Posta Kodu" asp-for="@Model.ZipCode">
+                                            </div>
+                                        </div>
+                                    </div>
+                                   <div class="col-md-6">
+                                       <div class="row">
+
+                                    <div class="col-md-12 mb-3" style="height:480px;">
+                                        <label class="form-label">Uydu Görüntüsü</label>
+                                        <div id="map"></div>
+                                    </div>
+                                       </div>
+                                   </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <div class="card">
+                            <div class="card-header konfrut-backgroundcolor-important">
+                                <h6><span class="bi bi-card-image"></span> kart Bilgiler</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Özel Kod 1</label>
+                                        <input type="text" class="form-control" placeholder="Özel Kod 1" aria-label="Özel Kod 1" asp-for="@Model.SpecialArea1">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Özel Kod 2</label>
+                                        <input type="text" class="form-control" placeholder="Özel Kod 2" aria-label="Özel Kod 2" asp-for="@Model.SpecialArea2">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Özel Kod 3</label>
+                                        <input type="text" class="form-control" placeholder="Özel Kod 3" aria-label="Özel Kod 3" asp-for="@Model.SpecialArea3">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Özel Kod 4</label>
+                                        <input type="text" class="form-control" placeholder="Özel Kod 4" aria-label="Özel Kod 4" asp-for="@Model.SpecialArea4">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Özel Kod 5</label>
+                                        <input type="text" class="form-control" placeholder="Özel Kod 5" aria-label="Özel Kod 5" asp-for="@Model.SpecialArea5">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Styles{
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+}
+@section Scripts {
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/leaflet-easyprint"></script>
+
+    <script>
+$(document).ready(function() {
+    $('.select2').select2();
+
+      $('#savebutton').on('click', function (e) {
+          e.preventDefault();
+      $('#currentcardaddressform').submit();
+  });
+
+    $('#fetchInformationsCurrentCardbutton').click(function(event){
+        event.preventDefault();
+        var dataId = $(this).data('id');
+        $.ajax({
+    url: '/CurrentCard/FetchCurrentCardWithAddress', // API endpoint
+    data: {
+        currentCardId: dataId
+    }
+    , method: 'GET'
+    , success: function(response) {
+        if (response.resultStatus === 1) {
+    toastr.warning('Cari kart ile eşlenemedi.', 'İşlem Başarısız!');
+
+}else{
+    console.log(response.data);
+    $('#FirstName').val(response.data.name);
+    $('#LastName').val(response.data.surname);
+    $('#Email').val(response.data.email);
+    $('#PhoneNumber').val(response.data.gsm);
+    $('#CompanyName').val(response.data.commercialTitle);
+}
+    }
+    , error: function(error) {
+        toastr.warning('Cari kart adres ile eşlenemedi.', 'İşlem Başarısız!');
+    }
+});
+
+    });
+
+    // Harita oluşturma
+
+    var map = L.map('map').setView([39.9334, 32.8597], 10);
+
+    mapLink =
+        '<a href="http://www.esri.com/">Esri</a>';
+    wholink =
+        'i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
+    googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+        maxZoom: 20
+        , subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    }).addTo(map);
+
+    var geojsonLayer;
+    toastr.options = {
+        "closeButton": true
+        , "debug": false
+        , "newestOnTop": false
+        , "progressBar": true
+        , "positionClass": "toast-top-right"
+        , "preventDuplicates": false
+        , "onclick": null
+        , "showDuration": "300"
+        , "hideDuration": "1000"
+        , "timeOut": "5000"
+        , "extendedTimeOut": "1000"
+        , "showEasing": "swing"
+        , "hideEasing": "linear"
+        , "showMethod": "fadeIn"
+        , "hideMethod": "fadeOut"
+    };
+
+    var attributionControl = document.querySelector('.leaflet-control-attribution.leaflet-control');
+    if (attributionControl) {
+        attributionControl.textContent = 'KONFRUT AG | KONE Parsel Sorgulama Ekranı.';
+    }
+
+
+    $('#selectedProvinceId').change(function() {
+        toastr.info('Bu işlem biraz vakit alabilir. Sistemde olmayan veriler Tapu kadastro parsel sorgulama sistmeinden çekilirken, olan veriler sistemden çekilmektedir. İşlem bitince ilçeler dolacaktır.', 'Veriler Çekiliyor!');
+
+        var selectElement1 = $('#selectedDistrictId');
+        selectElement1.empty();
+        var selectElement2 = $('#selectedVillageId');
+        selectElement2.empty();
+
+        var selectedId = $(this).val();
+        // Fetch city data from API
+        $.ajax({
+            url: '/Home/GetProvinceCoordinates', // API endpoint
+            data: {
+                provinceId: selectedId
+            }
+            , method: 'GET'
+            , success: function(response) {
+                // Clear previous layers if any
+                if (geojsonLayer && map.hasLayer(geojsonLayer)) {
+                    map.removeLayer(geojsonLayer);
+                }
+
+                // Draw polygons
+                var geojsonFeature = response;
+
+                geojsonLayer = L.geoJSON(geojsonFeature, {
+                    style: function(feature) {
+                        console.log(feature);
+                        return {
+                            fillColor: '#FF6961', // Change fill color as needed
+                            weight: 1,
+                            opacity: 1,
+                            color: 'red',
+                            fillOpacity: 0.7
+                        };
+                    }
+                }).addTo(map);
+
+                // Zoom to fit the bounds of the drawn polygon
+                map.fitBounds(geojsonLayer.getBounds());
+
+
+            }
+            , error: function(error) {
+                toastr.warning('İl kordinatları getirilemedi.', 'İşlem Başarısız!');
+
+                console.error('Error fetching city data:', error);
+            }
+        });
+
+        $.ajax({
+            url: '/Home/DistrictList', // Replace with your API endpoint
+            data: {
+                provinceId: selectedId
+            }
+            , method: 'GET'
+            , success: function(response) {
+                console.log(response);
+
+                var selectElement = $('#selectedDistrictId');
+                selectElement.empty();
+
+                var features = response.features; // Veri dizisi
+
+                // Her bir öğe için döngü
+                features.forEach(function(feature) {
+                    var id = feature.properties.id; // İlçe ID'si
+                    var text = feature.properties.text; // İlçe adı
+
+                    // Eğer ilçe adı null değilse, dropdown listesine ekle
+                    if (text !== null) {
+                        var option = $('<option></option>').attr('value', id).text(text);
+                        selectElement.append(option);
+                    }
+                });
+
+                toastr.success('İlçeler getirildi. Lütfen ilçe seçerek ilerleyiniz.', 'İşlem Başarılı!');
+            }
+            , error: function(error) {
+                toastr.warning('İlçeler getirilemedi.', 'İşlem Başarısız!');
+                console.error('Error fetching city data:', error);
+            }
+        });
+    });
+
+    $('#selectedDistrictId').change(function() {
+        toastr.info('Bu işlem biraz vakit alabilir. Sistemde olmayan veriler Tapu kadastro parsel sorgulama sistmeinden çekilirken, olan veriler sistemden çekilmektedir. İşlem bitince mahalleler dolacaktır.', 'Veriler Çekiliyor!');
+
+        var selectElement = $('#selectedVillageId');
+        selectElement.empty();
+
+        var selectedId = $(this).val();
+        // Fetch city data from API
+        $.ajax({
+            url: '/Home/GetDistrictCoordinates', // API endpoint
+            data: {
+                districtId: selectedId
+            }
+            , method: 'GET'
+            , success: function(response) {
+                // Clear previous layers if any
+                if (geojsonLayer && map.hasLayer(geojsonLayer)) {
+                    map.removeLayer(geojsonLayer);
+                }
+
+                // Draw polygons
+                var geojsonFeature = response;
+
+                geojsonLayer = L.geoJSON(geojsonFeature, {
+                    style: function(feature) {
+                        console.log(feature);
+                        return {
+                            fillColor: '#FF6961', // Change fill color as needed
+                            weight: 1,
+                            opacity: 1,
+                            color: 'red',
+                            fillOpacity: 0.7
+                        };
+                    }
+                }).addTo(map);
+
+                // Zoom to fit the bounds of the drawn polygon
+                map.fitBounds(geojsonLayer.getBounds());
+            }
+            , error: function(error) {
+                toastr.warning('İlçe Kordinatları getirilemedi.', 'İşlem Başarısız!');
+
+                console.error('Error fetching city data:', error);
+            }
+        });
+
+        $.ajax({
+            url: '/Home/VillageList', // Replace with your API endpoint
+            data: {
+                districtId: selectedId
+            }
+            , method: 'GET'
+            , success: function(response) {
+                console.log(response);
+
+                var selectElement = $('#selectedVillageId');
+                selectElement.empty();
+
+                var features = response.features; // Veri dizisi
+
+                // Her bir öğe için döngü
+                features.forEach(function(feature) {
+                    var id = feature.properties.id; // İlçe ID'si
+                    var text = feature.properties.text; // İlçe adı
+
+                    // Eğer ilçe adı null değilse, dropdown listesine ekle
+                    if (text !== null) {
+                        var option = $('<option></option>').attr('value', id).text(text);
+                        selectElement.append(option);
+                    }
+                });
+
+                toastr.success('Mahalleler getirildi. Lütfen ilçe seçerek ilerleyiniz.', 'İşlem Başarılı!');
+            }
+            , error: function(error) {
+                toastr.warning('Mahalleler getirilemedi.', 'İşlem Başarısız!');
+
+                console.error('Error fetching city data:', error);
+            }
+        });
+    });
+
+    var isVillageEmpty = $(selectedVillageId).val();
+    var isLandEmpty = $(land).val();
+    var isParcelEmpty = $(parcel).val();
+
+    if (isVillageEmpty != "" && isLandEmpty != "" && isParcelEmpty !="") {
+        var villageId = $('#selectedVillageId').val();
+        var parcelNo = $('#parcel').val();
+        var landNo = $('#land').val();
+        $.ajax({
+            url: '/Home/GetParcelCoordinates', // API endpoint
+            data: {
+                villageId: villageId
+                , land: landNo
+                , parcel: parcelNo
+            }
+            , method: 'GET'
+            , success: function (response) {
+                if (response.resultStatus === 1) {
+                    toastr.warning('Parsel alanı bulunamadı.', 'İşlem Başarısız!');
+
+                } else {
+                    // Clear previous layers if any
+                    if (geojsonLayer && map.hasLayer(geojsonLayer)) {
+                        map.removeLayer(geojsonLayer);
+                    }
+
+                    // Draw polygons
+                    var geojsonFeature = response.data;
+                    geojsonLayer = L.geoJSON(geojsonFeature, {
+                        style: function (feature) {
+                            console.log(feature);
+                            return {
+                                fillColor: '#FF6961', // Change fill color as needed
+                                weight: 1,
+                                opacity: 1,
+                                color: 'red',
+                                fillOpacity: 0.7
+                            };
+                        }
+                        , onEachFeature: function (feature, layer) {
+                            var bounds = layer.getBounds(); // Katmanın sınırlarını al
+                            var center = bounds.getCenter(); // Katmanın merkezini hesapla
+
+                            // Metni oluştur
+                            var text = feature.properties.ozet;
+
+                            // Metni haritaya ekle
+                            L.marker(center, {
+                                icon: L.divIcon({
+                                    className: 'text-label text-white'
+                                    , html: '<div>' + text + '</div>'
+                                    , iconSize: [100, 40]
+                                })
+                            }).addTo(map);
+                        }
+                    }).addTo(map);
+
+                    // Zoom to fit the bounds of the drawn polygon
+                    map.fitBounds(geojsonLayer.getBounds());
+                    toastr.success('Ada/Parsel sorgusu başarıyla gerçekleştirilmiştir.', 'İşlem Başarılı!');
+                }
+            }
+            , error: function (error) {
+                toastr.warning('Parsel alanı bulunamadı.', 'İşlem Başarısız!');
+                console.error('Error fetching city data:', error);
+            }
+        });
+    }
+
+    $('#selectedVillageId').change(function() {
+        var selectedId = $(this).val();
+        // Fetch city data from API
+        $.ajax({
+            url: '/Home/GetVillageCoordinates', // API endpoint
+            data: {
+                villageId: selectedId
+            }
+            , method: 'GET'
+            , success: function(response) {
+                // Clear previous layers if any
+                if (geojsonLayer && map.hasLayer(geojsonLayer)) {
+                    map.removeLayer(geojsonLayer);
+                }
+
+                // Draw polygons
+                var geojsonFeature = response;
+
+                geojsonLayer = L.geoJSON(geojsonFeature, {
+                    style: function(feature) {
+                        console.log(feature);
+                        return {
+                            fillColor: '#FF6961', // Change fill color as needed
+                            weight: 1,
+                            opacity: 1,
+                            color: 'red',
+                            fillOpacity: 0.7
+                        };
+                    }
+                }).addTo(map);
+
+                // Zoom to fit the bounds of the drawn polygon
+                map.fitBounds(geojsonLayer.getBounds());
+            }
+            , error: function(error) {
+                toastr.warning('Mahalle/Köy Kordinatları getirilemedi.', 'İşlem Başarısız!');
+                console.error('Error fetching city data:', error);
+            }
+        });
+    });
+
+    $('#submitparcelformbutton').click(function(event) {
+        var villageId = $('#selectedVillageId').val();
+        var parcelNo = $('#parcel').val();
+        var landNo = $('#land').val();
+        $.ajax({
+            url: '/Home/GetParcelCoordinates', // API endpoint
+            data: {
+                villageId: villageId
+                , land: landNo
+                , parcel: parcelNo
+            }
+            , method: 'GET'
+            , success: function(response) {
+                if (response.resultStatus === 1) {
+                    toastr.warning('Parsel alanı bulunamadı.', 'İşlem Başarısız!');
+
+                } else {
+                    // Clear previous layers if any
+                    if (geojsonLayer && map.hasLayer(geojsonLayer)) {
+                        map.removeLayer(geojsonLayer);
+                    }
+
+                    // Draw polygons
+                    var geojsonFeature = response.data;
+                    $('#TitleDeedArea').val(response.data.properties.mevkii);
+                    $('#Property').val(response.data.properties.nitelik);
+                    $('#Location').val(response.data.properties.mevkii);
+                    $('#FloorType').val(response.data.properties.zeminKmdurum);
+                    $('#Sheet').val(response.data.properties.pafta);
+
+                    geojsonLayer = L.geoJSON(geojsonFeature, {
+                        style: function(feature) {
+                            console.log(feature);
+                            return {
+                                fillColor: '#FF6961', // Change fill color as needed
+                                weight: 1,
+                                opacity: 1,
+                                color: 'red',
+                                fillOpacity: 0.7
+                            };
+                        }
+                        , onEachFeature: function(feature, layer) {
+                            var bounds = layer.getBounds(); // Katmanın sınırlarını al
+                            var center = bounds.getCenter(); // Katmanın merkezini hesapla
+
+                            // Metni oluştur
+                            var text = feature.properties.ozet;
+
+                            // Metni haritaya ekle
+                            L.marker(center, {
+                                icon: L.divIcon({
+                                    className: 'text-label text-white'
+                                    , html: '<div>' + text + '</div>'
+                                    , iconSize: [100, 40]
+                                })
+                            }).addTo(map);
+                        }
+                    }).addTo(map);
+
+                    // Zoom to fit the bounds of the drawn polygon
+                    map.fitBounds(geojsonLayer.getBounds());
+                    toastr.success('Ada/Parsel sorgusu başarıyla gerçekleştirilmiştir.', 'İşlem Başarılı!');
+                }
+            }
+            , error: function(error) {
+                toastr.warning('Parsel alanı bulunamadı.', 'İşlem Başarısız!');
+                console.error('Error fetching city data:', error);
+            }
+        });
+    });
+});
+    </script>
+}

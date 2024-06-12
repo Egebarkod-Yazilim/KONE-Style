@@ -1,0 +1,182 @@
+﻿@await Html.PartialAsync("_Breadcrumb", new KONE.KOne.WebUI.Models.BreadCrumb.BreadCrumbViewModel
+{
+    HeaderTitle = "Adresler",
+    PageNames = new List<string>() { "Admin", "Anasayfa", "Cari Kart", "Adresler" },
+    Url = "/Admin/Home/Index"
+})
+<div id="modalPlaceHolder" aria-hidden="true"></div>
+<div class="row">
+    <div class="col-md-12">
+        @await Component.InvokeAsync("CurrentCardAddressLandList", new { id = ViewBag.CurrentCardId, landnameid = ViewBag.LandNameId })
+    </div>
+    <div class="col-md-12">
+        <div class="card custom-card">
+            <div class="card-header justify-content-between">
+                <div class="card-title">
+                    <span class="bi bi-pin-map-fill"></span> Uydu Görüntüleri
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="col-md-12 mb-3" style="height:480px;">
+                    <label class="form-label">Uydu Görüntüsü</label>
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles{
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+}
+@section Scripts{
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/leaflet-easyprint"></script>
+    <script>
+        $(document).ready(function () {
+            var map = L.map('map').setView([39.9334, 32.8597], 10);
+
+            mapLink =
+                '<a href="http://www.esri.com/">Esri</a>';
+            wholink =
+                'i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
+            googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+                maxZoom: 20
+                , subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+            }).addTo(map);
+
+            var geojsonLayer;
+            toastr.options = {
+                "closeButton": true
+                , "debug": false
+                , "newestOnTop": false
+                , "progressBar": true
+                , "positionClass": "toast-top-right"
+                , "preventDuplicates": false
+                , "onclick": null
+                , "showDuration": "300"
+                , "hideDuration": "1000"
+                , "timeOut": "5000"
+                , "extendedTimeOut": "1000"
+                , "showEasing": "swing"
+                , "hideEasing": "linear"
+                , "showMethod": "fadeIn"
+                , "hideMethod": "fadeOut"
+            };
+
+            var attributionControl = document.querySelector('.leaflet-control-attribution.leaflet-control');
+            if (attributionControl) {
+                attributionControl.textContent = 'KONFRUT AG | KONE Parsel Sorgulama Ekranı.';
+            }
+
+            L.Control.Button = L.Control.extend({
+                options: {
+                    position: 'topleft'
+                },
+                onAdd: function (map) {
+                    var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+                    var button = L.DomUtil.create('a', 'leaflet-control-button', container);
+
+                    // Trash icon ekleme
+                    var icon = L.DomUtil.create('span', 'bx bx-trash w-50', button);
+                    icon.style.fontSize = '18px';
+                    icon.style.verticalAlign = 'middle';
+                    L.DomEvent.disableClickPropagation(button);
+                    L.DomEvent.on(button, 'click', function (event) {
+                        // Tüm markerları seç
+                        var markers = document.querySelectorAll('g');
+                        var texts = document.querySelectorAll('.leaflet-marker-icon');
+
+                        // Her bir markerı döngüye alarak kaldır
+                        markers.forEach(function (marker) {
+                            marker.innerHTML = '';
+                        });
+
+                        texts.forEach(function (text) {
+                            text.innerHTML = '';
+                        });
+                    });
+
+
+                    container.title = "Title";
+
+                    return container;
+                },
+                onRemove: function (map) { },
+            });
+            var control = new L.Control.Button()
+            control.addTo(map);
+
+            $('.addtomap').click(function (event) {
+                var villageId = $(this).data('villageid');
+                var parcelNo = $(this).data('parcel');
+                var landNo = $(this).data('land');
+
+                $.ajax({
+                    url: '/Home/GetParcelCoordinates', // API endpoint
+                    data: {
+                        villageId: villageId
+                        , land: landNo
+                        , parcel: parcelNo
+                    }
+                    , method: 'GET'
+                    , success: function (response) {
+                        if (response.resultStatus === 1) {
+                            toastr.warning('Parsel alanı bulunamadı.', 'İşlem Başarısız!');
+                        } else {
+                            // Daha önce oluşturulmuş bir katman var mı diye kontrol ediyoruz
+                            if (!geojsonLayer || JSON.stringify(geojsonLayer.toGeoJSON()) !== JSON.stringify(response.data)) {
+                                // Yeni bir katman oluşturuyoruz
+                                var geojsonFeature = response.data;
+
+                                var newLayer = L.geoJSON(geojsonFeature, {
+                                    style: function (feature) {
+                                        return {
+                                            fillColor: '#FF6961', // Fill color
+                                            weight: 1, // Weight of the border
+                                            opacity: 1, // Opacity of the border
+                                            color: 'red', // Color of the border
+                                            fillOpacity: 0.7 // Fill opacity
+                                        };
+                                    },
+                                    onEachFeature: function (feature, layer) {
+                                        var bounds = layer.getBounds(); // Get the layer bounds
+                                        var center = bounds.getCenter(); // Calculate the center of the layer
+
+                                        // Create the text
+                                        var text = feature.properties.ozet;
+
+                                        // Add the text to the map
+                                        L.marker(center, {
+                                            icon: L.divIcon({
+                                                className: 'text-label text-white', // Custom CSS class for the icon
+                                                html: '<div>' + text + '</div>', // HTML content of the icon
+                                                iconSize: [100, 40] // Size of the icon
+                                            })
+                                        }).addTo(map);
+                                    }
+                                }).addTo(map);
+
+                                // Zoom to fit the bounds of the drawn polygon
+                                map.fitBounds(newLayer.getBounds());
+
+                                // Show success message
+                                toastr.success('Ada/Parsel sorgusu başarıyla gerçekleştirilmiştir.', 'İşlem Başarılı!');
+                            } else {
+                                // Show info message if the layer already exists
+                                toastr.info('Mevcut katman zaten eklendi.', 'İşlem Başarılı!');
+                            }
+                        }
+                    }
+                    , error: function (error) {
+                        toastr.warning('Parsel alanı bulunamadı.', 'İşlem Başarısız!');
+                        console.error('Error fetching city data:', error);
+                    }
+                });
+            });
+        });
+    </script>
+
+}

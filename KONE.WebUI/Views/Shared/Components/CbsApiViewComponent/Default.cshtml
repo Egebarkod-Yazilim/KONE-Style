@@ -1,0 +1,53 @@
+﻿@model KONE.WebUI.Models.CBSAPI.CbsApiViewModel
+<div class="row">
+    <div class="card custom-card shadow w-100 h-100">
+        <div class="card-header justify-content-between">
+            <div class="card-title">
+                <i class="bi bi-bounding-box-circles"></i> Parsel Sorgu Alanı
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 p-4">
+                    <form id="parcelsearchform" method="post">
+
+                        <div class="custom-form-group row">
+                            <label for="input-noradius" class="form-label"><i class="bi bi-map-fill"></i> İller</label>
+                            <select id="selectedProvinceId" asp-for="SelectedProvinceId" class="select2 form-control" asp-items="Model.Provinces">
+                            </select>
+                        </div>
+                        <div class="custom-form-group row mt-3">
+                            <label for="input-noradius" class="form-label"><i class="bi bi-pin-map-fill"></i> İlçeler</label>
+                            <select id="selectedDistrictId" asp-for="SelectedDistrictId" class="select2 form-control">
+                                <option value="">Lütfen İlçe Seçiniz</option>
+                            </select>
+                        </div>
+
+                        <div class="custom-form-group row mt-3">
+                            <label for="input-noradius" class="form-label"><i class="bi bi-house-fill"></i> Mahalleler / Köyler</label>
+                            <select id="selectedVillageId" asp-for="SelectedVillageId" class="select2 form-control">
+                                <option value="">Lütfen Mahalle/Köy Seçiniz</option>
+                            </select>
+                        </div>
+                        <div class="custom-form-group row mt-3">
+                            <label for="input-noradius" class="form-label"> Ada</label>
+                            <input type="number" maxlength="15" class="form-control" id="LandNo" placeholder="Ada" asp-for="Land">
+                        </div>
+                        <div class="custom-form-group row mt-3">
+                            <label for="input-noradius" class="form-label"> Parsel</label>
+                            <input type="number" maxlength="15" class="form-control" id="ParcelNo" placeholder="Parsel" asp-for="Parcel">
+                        </div>
+                        <div class="custom-form-group row mt-3">
+                           
+                            <button id="submitparcelformbutton" type="button" class="btn btn-primary btn-wave waves-effect waves-light"><i class="bi bi-search"></i> Sorgula</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-8">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/cbsapiinitialize.js" defer></script>

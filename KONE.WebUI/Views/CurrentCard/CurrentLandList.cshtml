@@ -1,0 +1,16 @@
+﻿@model KONE.Entities.Dtos.CurrentCard.AddOrUpdateCurrentCard
+@await Html.PartialAsync("_Breadcrumb", new KONE.KOne.WebUI.Models.BreadCrumb.BreadCrumbViewModel
+{
+    HeaderTitle = "Adresler",
+    PageNames = new List<string>() { "Admin", "Anasayfa", "Cari Kart", "Adresler" },
+    Url = "/Admin/Home/Index"
+})
+<div id="modalPlaceHolder" aria-hidden="true"></div>
+<div class="row">
+    <div class="col-md-12">
+        @await Component.InvokeAsync("CurrentCardDetailViewComponent", new {id = Model.Id})
+    </div>
+    <div class="col-md-12">
+        @await Component.InvokeAsync("CurrentCardLandNameListViewComponent", new {id = Model.Id, landnameid = Model.LandNameId})
+    </div>
+</div>

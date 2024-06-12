@@ -1,0 +1,196 @@
+﻿@model KONE.Entities.Dtos.CurrentCard.AddOrUpdateCurrentCard
+<div class="card custom-card shadow">
+    <div class="card-header justify-content-between" data-bs-toggle="collapse" data-bs-target="#collapsablecard1" aria-expanded="false" aria-controls="collapsablecard1">
+        <div class="card-title">
+            <div class="card-title">
+                <span class="bi bi-people-fill"></span>
+                Cari Kart Bilgileri
+            </div>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+        </div>
+    </div>
+    <div id="collapsablecard1" class="card-body collapse show">
+        <form id="currentcardform" asp-controller="CurrentCard" asp-action="AddOrUpdateCurrentCard" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card custom-card overflow-hidden border shadow-sm">
+                        <div class="card-body p-0">
+                            <div class="px-1 py-2 konfrut-backgroundcolor-important"></div>
+                            <div class="p-3">
+                                <div class="d-flex justify-content-between align-items-center mb-3" data-bs-toggle="collapse" data-bs-target="#collapsablediv2" aria-expanded="false" aria-controls="collapsablediv1">
+                                    <div class="fs-18 fw-semibold"><span class="bi bi-person-fill"></span> Kişisel Bilgiler</div>
+
+                                    <div>
+                                        <span class="badge bg-success-transparent"></span>
+                                    </div>
+                                </div>
+                                <div id="collapsablediv2" class="row collapse show">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Adı</label>
+                                        <input type="text" class="form-control form-control-light" placeholder="Adı" aria-label="Adı" asp-for="@Model.Name">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Soyadı</label>
+                                        <input type="text" class="form-control form-control-light" placeholder="Soyadı" aria-label="Soyadı" asp-for="@Model.Surname">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">GSM</label>
+                                        <input placeholder="(___) ___ __ __ __" id="telefon" type="text" class="form-control form-control-light" placeholder="GSM" aria-label="GSM" asp-for="@Model.GSM">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">E-posta</label>
+                                        <input type="text" class="form-control form-control-light" placeholder="E-posta" aria-label="E-posta" asp-for="@Model.Email">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="card custom-card overflow-hidden border shadow-sm ">
+                        <div class="card-body p-0">
+                            <div class="px-1 py-2 konfrut-backgroundcolor-important "></div>
+                            <div class="p-3">
+                                <div class="d-flex justify-content-between align-items-center mb-3" data-bs-toggle="collapse" data-bs-target="#collapsablediv1" aria-expanded="false" aria-controls="collapsablediv1">
+                                    <div class="fs-18 fw-semibold"> <span class="bi bi-credit-card mr-3"></span> Cari Bilgileri</div>
+                                    <div>
+                                        <span class="badge bg-success-transparent"></span>
+                                    </div>
+                                </div>
+                                <div id="collapsablediv1" class="row collapse">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Kimlik Numarası</label>
+                                        <input type="text" class="form-control form-control-light" placeholder="Kimlik Numarası" aria-label="Kimlik Numarası" asp-for="@Model.IdentificationNumber">
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Vergi Numarası</label>
+                                        <input type="text" class="form-control form-control-light" placeholder="Vergi Numarası" aria-label="Vergi Numarası" asp-for="@Model.TaxNumber">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Vergi Dairesi</label>
+                                        <input type="text" class="form-control form-control-light" placeholder="Vergi Dairesi" aria-label="Vergi Numarası" asp-for="@Model.TaxOffice">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+                    <div class="card custom-card overflow-hidden border shadow-sm ">
+                        <div class="card-body p-0">
+                            <div class="px-1 py-2 konfrut-backgroundcolor-important "></div>
+                            <div class="p-3">
+                                <div class="d-flex justify-content-between align-items-center mb-3" data-bs-toggle="collapse" data-bs-target="#collapsablediv3" aria-expanded="false" aria-controls="collapsablediv3">
+                                    <div class="fs-18 fw-semibold"><span class="bi bi-building"></span> Şirket Bilgileri</div>
+                                    <div>
+                                        <span class="badge bg-success-transparent"></span>
+                                    </div>
+                                </div>
+                                <div id="collapsablediv3" class="row collapse">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Ticari Ünvan</label>
+                                        <input type="text" class="form-control form-control-light" placeholder="Ticari Ünvan" aria-label="Ticari Ünvan" asp-for="@Model.CommercialTitle">
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Durum</label>
+                                        <select id="1asd" asp-for="Status" class="select2 form-control form-control-light" asp-items="Model.CurrentCardStatues">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Tür</label>
+                                        <select id="2asd" asp-for="Type" class="select2 form-control form-control-light" asp-items="Model.CurrentCardTypes">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Şirket Türü</label>
+                                        <select id="3asd" asp-for="CompanyType" class="select2 form-control form-control-light" asp-items="Model.CompanyTypes">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Açıklama</label>
+                                        <textarea asp-for="Description" class="form-control form-control-light">
+                                      </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="card custom-card overflow-hidden border shadow-sm ">
+                        <div class="card-body p-0">
+                            <div class="px-1 py-2 konfrut-backgroundcolor-important "></div>
+                            <div class="p-3">
+                                <div class="d-flex justify-content-between align-items-center mb-3" data-bs-toggle="collapse" data-bs-target="#collapsablediv5" aria-expanded="false" aria-controls="collapsablediv5">
+                                    <div class="fs-18 fw-semibold"><span class="bi bi-list-check"></span> ERP Bilgileri</div>
+
+                                    <div>
+                                        <span class="badge bg-success-transparent"></span>
+                                    </div>
+                                </div>
+                                <div id="collapsablediv5" class="row collapse">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">ERP Kimliği</label>
+                                        <input type="text" class="form-control form-control-light" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.ErpId">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Mevcut Kod</label>
+                                        <input type="text" class="form-control form-control-light" placeholder="Mevcut Kod" aria-label="Mevcut Kod" asp-for="@Model.CurrentCode">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="card custom-card overflow-hidden border shadow-sm ">
+                        <div class="card-body p-0">
+                            <div class="px-1 py-2 konfrut-backgroundcolor-important "></div>
+                            <div class="p-3">
+                                <div class="d-flex justify-content-between align-items-center mb-3" data-bs-toggle="collapse" data-bs-target="#collapsablediv4" aria-expanded="false" aria-controls="collapsablediv4">
+                                    <div class="fs-18 fw-semibold"><span class="bi bi-journal-code"></span> Kart Bilgileri</div>
+                                    <div>
+                                        <span class="badge bg-success-transparent"></span>
+                                    </div>
+                                </div>
+                                <div id="collapsablediv4" class="row collapse">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Özel Alan 1</label>
+                                        <input type="text" class="form-control form-control-light" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.SpecialArea1">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Özel Alan 2</label>
+                                        <input type="text" class="form-control form-control-light" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.SpecialArea2">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Özel Alan 3</label>
+                                        <input type="text" class="form-control form-control-light" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.SpecialArea3">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Özel Alan 4</label>
+                                        <input type="text" class="form-control form-control-light" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.SpecialArea4">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Özel Alan 5</label>
+                                        <input type="text" class="form-control form-control-light" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.SpecialArea5">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

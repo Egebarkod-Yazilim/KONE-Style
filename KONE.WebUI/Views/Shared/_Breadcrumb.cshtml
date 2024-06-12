@@ -1,0 +1,26 @@
+﻿@model KONE.KOne.WebUI.Models.BreadCrumb.BreadCrumbViewModel
+
+<div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+    <h1 class="page-title fw-semibold fs-18 mb-0">@Model.HeaderTitle</h1>
+    <div class="ms-md-1 ms-0">
+        <nav>
+            <ol class="breadcrumb mb-0">
+                @foreach (string pagename in Model.PageNames)
+                {
+                    @if (pagename == Model.PageNames.First())
+                    {
+                        <li class="breadcrumb-item" aria-current="page"><a asp-controller="Home" asp-action="Index">@pagename</a></li>
+                    }
+                    else if (pagename == Model.PageNames.Last())
+                    {
+                        <li class="breadcrumb-item active" aria-current="page">@pagename</li>
+                    }
+                    else
+                    {
+                        <li class="breadcrumb-item">@pagename</li>
+                    }
+                }
+            </ol>
+        </nav>
+    </div>
+</div>
