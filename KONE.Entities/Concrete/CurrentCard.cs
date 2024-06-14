@@ -1,5 +1,6 @@
 ﻿using KONE.Shared.Entities.Abstract;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using static KONE.Shared.Utils.Results.ComplexTypes.EnumVariables;
 
 namespace KONE.Entities.Concrete
@@ -50,5 +51,15 @@ namespace KONE.Entities.Concrete
 
         public ICollection<CurrentCardLandName> CurrentCardLandNames { get; set; }
         public ICollection<CurrentCardAddressMapping> CurrentCardAddressMappings { get; set; }
+
+        // Computed properties
+        [NotMapped]
+        public string StatusString => Status.ToString();
+        [NotMapped]
+        public string TypeString => Type.ToString();
+        [NotMapped]
+        public string CompanyTypeString => CompanyType.ToString();
+        [NotMapped]
+        public string IntegrationTypeString => IntegrationType.ToString();
     }
 }

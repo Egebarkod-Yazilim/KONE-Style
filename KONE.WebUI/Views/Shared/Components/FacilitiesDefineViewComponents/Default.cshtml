@@ -1,29 +1,48 @@
-﻿<div class="container mt-4">
-    <!-- İlk Card -->
-    <div class="card">
-        <div class="card-header" id="cardHeaderOne"  data-bs-toggle="">
-            <i class="bi bi-building"></i> Yeni Depo Oluştur
-        </div>
-        <div class="card-body collapse" id="cardBodyOne">
-            <div class="mb-3">
-                <label for="depoAdi" class="form-label fs-14 text-dark">Depo Adı</label>
-                <input type="text" class="form-control" id="depoAdi" placeholder="Depo Adı">
+﻿<div class="accordion accordion-solid-primary" id="accordionPrimarySolidExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingPrimarySolidOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapsePrimarySolidOne" aria-expanded="true"
+                    aria-controls="collapsePrimarySolidOne">
+                <i class="bi bi-building"></i> Yeni Depo Oluştur
+            </button>
+        </h2>
+        <div id="collapsePrimarySolidOne" class="accordion-collapse collapse show"
+             aria-labelledby="headingPrimarySolidOne"
+             data-bs-parent="#accordionPrimarySolidExample">
+            <div class="accordion-body">
+                <div class="mb-3">
+                    <label for="depoAdi" class="form-label fs-14 text-dark">Depo Adı</label>
+                    <input type="text" class="form-control" id="depoAdi" placeholder="Depo Adı">
+                </div>
+                <div class="mb-3">
+                    <label for="depoKodu" class="form-label fs-14 text-dark">Depo Kodu</label>
+                    <input type="text" class="form-control" id="depoKodu" placeholder="Depo Kodu">
+                </div>
+                <button class="btn btn-success" type="submit"><span class="bi bi-check"></span> Kaydet</button>
             </div>
-            <div class="mb-3">
-                <label for="depoKodu" class="form-label fs-14 text-dark">Depo Kodu</label>
-                <input type="text" class="form-control" id="depoKodu" placeholder="Depo Kodu">
-            </div>
-            <button class="btn btn-primary" type="submit"><span class="bi bi-check"></span> Kaydet</button>
-        </div>
-    </div>
-
-    <!-- İkinci Card -->
-    <div class="card mt-2">
-        <div class="card-header" id="cardHeaderTwo">
-            <i class="bi bi-building"></i> Depolar
-        </div>
-        <div class="card-body collapse" id="cardBodyTwo">
-            @await Component.InvokeAsync("ProvinceListViewComponent")
         </div>
     </div>
 </div>
+<div class="accordion accordion-solid-primary mt-4" id="acrdsolid2">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingPrimarySolidOne2">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapsePrimarySolidTwo" aria-expanded="true"
+                    aria-controls="acrdsolid2">
+                <i class="bi bi-building"></i> Depolar
+            </button>
+        </h2>
+        <div id="collapsePrimarySolidTwo" class="accordion-collapse collapse show"
+             aria-labelledby="headingPrimarySolidOne2"
+             data-bs-parent="#acrdsolid2">
+            <div class="accordion-body">
+                @await Component.InvokeAsync("ProvinceListViewComponent")
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

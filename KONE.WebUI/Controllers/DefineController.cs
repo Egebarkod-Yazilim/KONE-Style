@@ -8,6 +8,12 @@ namespace KONE.KOne.WebUI.Controllers
         {
 
         }
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            return View();
+        }
+
         public IActionResult Districts()
         {
             return ViewComponent("DistrictDefineViewComponents");

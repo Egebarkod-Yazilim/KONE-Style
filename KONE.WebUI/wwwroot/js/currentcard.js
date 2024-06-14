@@ -12,8 +12,9 @@ $(document).ready(function () {
             { "data": 'name'},
             { "data": 'surname' },
             { "data": 'commercialTitle' },
-            { "data": 'type' },
-            { "data": 'companyType' },
+            { "data": 'typeString' },
+            { "data": 'statusString' },
+            { "data": 'companyTypeString' },
             { "data": 'gsm' },
             { "data": 'currentCode' },
             { "data": 'email' },
@@ -29,11 +30,50 @@ $(document).ready(function () {
             {
                 "targets": [5],
                 "render": function (data, type, row, meta) {
-                    return `<span class="badge bg-success-transparent">TEST</span>`;
+                    let badgeClass = 'bg-secondary-transparent'; // Default class
+                    if (data === 'Grower') {
+                        badgeClass = 'bg-success-transparent';
+                    } else if (data === 'Merchant') {
+                        badgeClass = 'bg-danger-transparent';
+                    } else if (data === 'Logistician') {
+                        badgeClass = 'bg-warning-transparent';
+                    }
+                    else if (data === 'ConsumablesSupplier') {
+                        badgeClass = 'bg-primary-transparent';
+                    }
+                    return `<span class="badge ${badgeClass}">${data}</span>`;
                 }
             },
             {
-                "targets": [10],
+                "targets": [6], // statusString sütunu indeksi
+                "render": function (data, type, row, meta) {
+                    let badgeClass = 'bg-secondary-transparent'; // Default class
+                    if (data === 'Waiting') {
+                        badgeClass = 'bg-success-transparent';
+                    } else if (data === 'Approved') {
+                        badgeClass = 'bg-danger-transparent';
+                    } else if (data === 'Unapproved') {
+                        badgeClass = 'bg-warning-transparent';
+                    }
+                    return `<span class="badge ${badgeClass}">${data}</span>`;
+                }
+            },
+            {
+                "targets": [7], // statusString sütunu indeksi
+                "render": function (data, type, row, meta) {
+                    let badgeClass = 'bg-secondary-transparent'; // Default class
+                    if (data === 'PersonCompany') {
+                        badgeClass = 'bg-success-transparent';
+                    } else if (data === 'IncorporatedCompany') {
+                        badgeClass = 'bg-danger-transparent';
+                    } else if (data === 'LimitedCompany') {
+                        badgeClass = 'bg-warning-transparent';
+                    }
+                    return `<span class="badge ${badgeClass}">${data}</span>`;
+                }
+            },
+            {
+                "targets": [11],
                 "render": function (data, type, row, meta) {
                                     if (data === true) {
                                         return '<span class="badge bg-success-transparent"><svg class="flex-shrink-0 me-2 svg-success" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 24 24" width="1rem" fill="#000000"><path d="M0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none"></path><path d="M16.59 7.58L10 14.17l-3.59-3.58L5 12l5 5 8-8zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path></svg> Evet</span>';
@@ -46,11 +86,13 @@ $(document).ready(function () {
                 
             },
             {
-                "targets": [11],
+                "targets": [12],
                 "render": function (data, type, row, meta) {
                     return '<div class="hstack gap-2">'+
                         '<a aria-label="anchor" href="/CurrentCard/AddOrUpdateCurrentCard/' + row.id + '" class="btn btn-icon btn-wave waves-effect waves-light btn-sm btn-primary-light"><i class="ri-edit-line" data-bs-toggle="tooltip" data-bs-placement="top" title="Cari Detay"></i></a>' +
                         '<a aria-label="anchor" href="/CurrentCard/CurrentLandList/' + row.id + '" class="btn btn-icon btn-wave waves-effect waves-light btn-sm btn-warning-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Tarla Ekle"><i class="ri-landscape-line"></i></a>' +
+                        '<a aria-label="anchor" href="/CurrentCard/CurrentLandList/' + row.id + '" class="btn btn-icon btn-wave waves-effect waves-light btn-sm btn-danger-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Cari Kart Ozeti"><i class="ri-file-edit-fill"></i>></a>' +
+                        '<a aria-label="anchor" href="/CurrentCard/CurrentLandList/' + row.id + '" class="btn btn-icon btn-wave waves-effect waves-light btn-sm btn-success-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Inaktif Et"><i class="ri-check-double-line"></i></a>'+
                         '</div>';
                 }
             },

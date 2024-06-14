@@ -44,19 +44,19 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Adı</label>
-                                        <input type="text" class="form-control" placeholder="Adı" aria-label="Adı" asp-for="@Model.Name">
+                                        <input type="text" class="form-control form-control-light" placeholder="Adı" aria-label="Adı" asp-for="@Model.Name">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Soyadı</label>
-                                        <input type="text" class="form-control" placeholder="Soyadı" aria-label="Soyadı" asp-for="@Model.Surname">
+                                        <input type="text" class="form-control form-control-light" placeholder="Soyadı" aria-label="Soyadı" asp-for="@Model.Surname">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">GSM</label>
-                                        <input placeholder="(___) ___ __ __ __" id="telefon" type="text" class="form-control" placeholder="GSM" aria-label="GSM" asp-for="@Model.GSM">
+                                        <input placeholder="(___) ___ __ __ __" id="telefon" type="text" class="form-control form-control-light"  aria-label="GSM" asp-for="@Model.GSM">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">E-posta</label>
-                                        <input type="text" class="form-control" placeholder="E-posta" aria-label="E-posta" asp-for="@Model.Email">
+                                        <input type="text" class="form-control form-control-light" placeholder="E-posta" aria-label="E-posta" asp-for="@Model.Email">
                                     </div>
                                 </div>
                             </div>
@@ -73,27 +73,58 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Ticari Ünvan</label>
-                                        <input type="text" class="form-control" placeholder="Ticari Ünvan" aria-label="Ticari Ünvan" asp-for="@Model.CommercialTitle">
+                                        <input type="text" class="form-control form-control-light" placeholder="Ticari Ünvan" aria-label="Ticari Ünvan" asp-for="@Model.CommercialTitle">
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Durum</label>
-                                        <select id="1asd" asp-for="Status" class="select2 form-control" asp-items="Model.CurrentCardStatues">
+                                        <select id="1asd" asp-for="Status" class="select2 form-control form-control-light" asp-items="Model.CurrentCardStatues">
                                         </select>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tür</label>
-                                        <select id="2asd" asp-for="Type" class="select2 form-control" asp-items="Model.CurrentCardTypes">
+                                        <select id="2asd" asp-for="Type" class="select2 form-control form-control-light" asp-items="Model.CurrentCardTypes">
                                         </select>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Şirket Türü</label>
-                                        <select id="3asd" asp-for="CompanyType" class="select2 form-control" asp-items="Model.CompanyTypes">
-                                        </select>
+                                        <input type="hidden" asp-for="@Model.CompanyType" value="@KONE.Shared.Utils.Results.ComplexTypes.EnumVariables.CompanyTypeEnum.IncorporatedCompany" />
+                                        @*<select id="3asd" asp-for="CompanyType" class="select2 form-control form-control-light" asp-items="Model.CompanyTypes">
+        </select>*@
+
+                                    <div class="row">
+                                        <div class="d-flex">
+                                            <div class="form-check me-3">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1"  name="companyType">
+                                                <label class="form-check-label border rounded text-center p-2 border-primary shadow" for="flexCheckChecked1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 95 95" width="25" height="25"><path d="M60.06,5.9v8.15L22.14,9.12V1.66a1.23,1.23,0,0,1,.42-.93,1.18,1.18,0,0,1,1-.3L59,4.68A1.22,1.22,0,0,1,60.06,5.9Z" /><path d="M49.28,65.11v16H32.92v-16a.46.46,0,0,1,.45-.46H48.84A.45.45,0,0,1,49.28,65.11Z" /><path d="M65.47,16.77l-43.82-5.7a1,1,0,0,1-.51.14,1,1,0,0,1-.72-.3l-3.59-.47a.37.37,0,0,0-.3.09.38.38,0,0,0-.13.3V81.06H30.92v-16a2.46,2.46,0,0,1,2.45-2.46H48.84a2.45,2.45,0,0,1,2.44,2.46v16H57a15.23,15.23,0,0,1,8.78-13.64V17.16A.4.4,0,0,0,65.47,16.77ZM32.57,55.58a2.69,2.69,0,0,1-2.67,2.69H25.2a2.69,2.69,0,0,1-2.67-2.69v-4a2.69,2.69,0,0,1,2.67-2.69h4.7a2.69,2.69,0,0,1,2.67,2.69Zm0-13.28A2.69,2.69,0,0,1,29.9,45H25.2a2.69,2.69,0,0,1-2.67-2.69v-4A2.69,2.69,0,0,1,25.2,35.6h4.7a2.69,2.69,0,0,1,2.67,2.69Zm0-13.28a2.69,2.69,0,0,1-2.67,2.69H25.2A2.69,2.69,0,0,1,22.53,29V25a2.69,2.69,0,0,1,2.67-2.69h4.7A2.69,2.69,0,0,1,32.57,25ZM46.13,55.58a2.7,2.7,0,0,1-2.68,2.69H38.76a2.69,2.69,0,0,1-2.68-2.69v-4a2.69,2.69,0,0,1,2.68-2.69h4.69a2.7,2.7,0,0,1,2.68,2.69Zm0-13.28A2.7,2.7,0,0,1,43.45,45H38.76a2.69,2.69,0,0,1-2.68-2.69v-4a2.69,2.69,0,0,1,2.68-2.69h4.69a2.7,2.7,0,0,1,2.68,2.69Zm0-13.28a2.7,2.7,0,0,1-2.68,2.69H38.76A2.69,2.69,0,0,1,36.08,29V25a2.69,2.69,0,0,1,2.68-2.69h4.69A2.7,2.7,0,0,1,46.13,25ZM59.68,55.58A2.69,2.69,0,0,1,57,58.27H52.31a2.69,2.69,0,0,1-2.68-2.69v-4a2.69,2.69,0,0,1,2.68-2.69H57a2.69,2.69,0,0,1,2.68,2.69Zm0-13.28A2.69,2.69,0,0,1,57,45H52.31a2.69,2.69,0,0,1-2.68-2.69v-4a2.69,2.69,0,0,1,2.68-2.69H57a2.69,2.69,0,0,1,2.68,2.69Zm0-13.28A2.69,2.69,0,0,1,57,31.71H52.31A2.69,2.69,0,0,1,49.63,29V25a2.69,2.69,0,0,1,2.68-2.69H57A2.69,2.69,0,0,1,59.68,25Z" /><path d="M57.68,25v4a.68.68,0,0,1-.68.69H52.31a.69.69,0,0,1-.68-.69V25a.69.69,0,0,1,.68-.69H57A.68.68,0,0,1,57.68,25Z" /><path d="M44.13,25v4a.69.69,0,0,1-.68.69H38.76a.68.68,0,0,1-.68-.69V25a.68.68,0,0,1,.68-.69h4.69A.69.69,0,0,1,44.13,25Z" /><path d="M30.57,25v4a.68.68,0,0,1-.67.69H25.2a.68.68,0,0,1-.67-.69V25a.68.68,0,0,1,.67-.69h4.7A.68.68,0,0,1,30.57,25Z" /><path d="M30.57,38.29v4a.68.68,0,0,1-.67.69H25.2a.68.68,0,0,1-.67-.69v-4a.68.68,0,0,1,.67-.69h4.7A.68.68,0,0,1,30.57,38.29Z" /><path d="M44.13,38.29v4a.69.69,0,0,1-.68.69H38.76a.68.68,0,0,1-.68-.69v-4a.68.68,0,0,1,.68-.69h4.69A.69.69,0,0,1,44.13,38.29Z" /><path d="M57.68,38.29v4A.68.68,0,0,1,57,43H52.31a.69.69,0,0,1-.68-.69v-4a.69.69,0,0,1,.68-.69H57A.68.68,0,0,1,57.68,38.29Z" /><path d="M57.68,51.57v4a.68.68,0,0,1-.68.69H52.31a.69.69,0,0,1-.68-.69v-4a.69.69,0,0,1,.68-.69H57A.68.68,0,0,1,57.68,51.57Z" /><path d="M44.13,51.57v4a.69.69,0,0,1-.68.69H38.76a.68.68,0,0,1-.68-.69v-4a.68.68,0,0,1,.68-.69h4.69A.69.69,0,0,1,44.13,51.57Z" /><path d="M30.57,51.57v4a.68.68,0,0,1-.67.69H25.2a.68.68,0,0,1-.67-.69v-4a.68.68,0,0,1,.67-.69h4.7A.68.68,0,0,1,30.57,51.57Z" /><path d="M72.2,68.08A13.21,13.21,0,1,0,85.37,81.29,13.21,13.21,0,0,0,72.2,68.08ZM72.2,91a9.66,9.66,0,1,1,9.66-9.66A9.67,9.67,0,0,1,72.2,91Z" /><path d="M72.2,73.64a7.66,7.66,0,1,0,7.66,7.65A7.66,7.66,0,0,0,72.2,73.64Zm3,8.65h-3a1,1,0,0,1-1-1V76.72a1,1,0,0,1,2,0v3.57h2a1,1,0,0,1,0,2Z" /></svg>
+                                                    <br />
+                                                    <small>Limited Şirket</small>
+                                                </label>
+                                            </div>
+                                            <div class="form-check me-3">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2"  name="companyType">
+                                                <label class="form-check-label border rounded text-center p-2 border-primary shadow" for="flexCheckChecked2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 95 95" width="25" height="25"><path d="M60.06,5.9v8.15L22.14,9.12V1.66a1.23,1.23,0,0,1,.42-.93,1.18,1.18,0,0,1,1-.3L59,4.68A1.22,1.22,0,0,1,60.06,5.9Z" /><path d="M49.28,65.11v16H32.92v-16a.46.46,0,0,1,.45-.46H48.84A.45.45,0,0,1,49.28,65.11Z" /><path d="M65.47,16.77l-43.82-5.7a1,1,0,0,1-.51.14,1,1,0,0,1-.72-.3l-3.59-.47a.37.37,0,0,0-.3.09.38.38,0,0,0-.13.3V81.06H30.92v-16a2.46,2.46,0,0,1,2.45-2.46H48.84a2.45,2.45,0,0,1,2.44,2.46v16H57a15.23,15.23,0,0,1,8.78-13.64V17.16A.4.4,0,0,0,65.47,16.77ZM32.57,55.58a2.69,2.69,0,0,1-2.67,2.69H25.2a2.69,2.69,0,0,1-2.67-2.69v-4a2.69,2.69,0,0,1,2.67-2.69h4.7a2.69,2.69,0,0,1,2.67,2.69Zm0-13.28A2.69,2.69,0,0,1,29.9,45H25.2a2.69,2.69,0,0,1-2.67-2.69v-4A2.69,2.69,0,0,1,25.2,35.6h4.7a2.69,2.69,0,0,1,2.67,2.69Zm0-13.28a2.69,2.69,0,0,1-2.67,2.69H25.2A2.69,2.69,0,0,1,22.53,29V25a2.69,2.69,0,0,1,2.67-2.69h4.7A2.69,2.69,0,0,1,32.57,25ZM46.13,55.58a2.7,2.7,0,0,1-2.68,2.69H38.76a2.69,2.69,0,0,1-2.68-2.69v-4a2.69,2.69,0,0,1,2.68-2.69h4.69a2.7,2.7,0,0,1,2.68,2.69Zm0-13.28A2.7,2.7,0,0,1,43.45,45H38.76a2.69,2.69,0,0,1-2.68-2.69v-4a2.69,2.69,0,0,1,2.68-2.69h4.69a2.7,2.7,0,0,1,2.68,2.69Zm0-13.28a2.7,2.7,0,0,1-2.68,2.69H38.76A2.69,2.69,0,0,1,36.08,29V25a2.69,2.69,0,0,1,2.68-2.69h4.69A2.7,2.7,0,0,1,46.13,25ZM59.68,55.58A2.69,2.69,0,0,1,57,58.27H52.31a2.69,2.69,0,0,1-2.68-2.69v-4a2.69,2.69,0,0,1,2.68-2.69H57a2.69,2.69,0,0,1,2.68,2.69Zm0-13.28A2.69,2.69,0,0,1,57,45H52.31a2.69,2.69,0,0,1-2.68-2.69v-4a2.69,2.69,0,0,1,2.68-2.69H57a2.69,2.69,0,0,1,2.68,2.69Zm0-13.28A2.69,2.69,0,0,1,57,31.71H52.31A2.69,2.69,0,0,1,49.63,29V25a2.69,2.69,0,0,1,2.68-2.69H57A2.69,2.69,0,0,1,59.68,25Z" /><path d="M57.68,25v4a.68.68,0,0,1-.68.69H52.31a.69.69,0,0,1-.68-.69V25a.69.69,0,0,1,.68-.69H57A.68.68,0,0,1,57.68,25Z" /><path d="M44.13,25v4a.69.69,0,0,1-.68.69H38.76a.68.68,0,0,1-.68-.69V25a.68.68,0,0,1,.68-.69h4.69A.69.69,0,0,1,44.13,25Z" /><path d="M30.57,25v4a.68.68,0,0,1-.67.69H25.2a.68.68,0,0,1-.67-.69V25a.68.68,0,0,1,.67-.69h4.7A.68.68,0,0,1,30.57,25Z" /><path d="M30.57,38.29v4a.68.68,0,0,1-.67.69H25.2a.68.68,0,0,1-.67-.69v-4a.68.68,0,0,1,.67-.69h4.7A.68.68,0,0,1,30.57,38.29Z" /><path d="M44.13,38.29v4a.69.69,0,0,1-.68.69H38.76a.68.68,0,0,1-.68-.69v-4a.68.68,0,0,1,.68-.69h4.69A.69.69,0,0,1,44.13,38.29Z" /><path d="M57.68,38.29v4A.68.68,0,0,1,57,43H52.31a.69.69,0,0,1-.68-.69v-4a.69.69,0,0,1,.68-.69H57A.68.68,0,0,1,57.68,38.29Z" /><path d="M57.68,51.57v4a.68.68,0,0,1-.68.69H52.31a.69.69,0,0,1-.68-.69v-4a.69.69,0,0,1,.68-.69H57A.68.68,0,0,1,57.68,51.57Z" /><path d="M44.13,51.57v4a.69.69,0,0,1-.68.69H38.76a.68.68,0,0,1-.68-.69v-4a.68.68,0,0,1,.68-.69h4.69A.69.69,0,0,1,44.13,51.57Z" /><path d="M30.57,51.57v4a.68.68,0,0,1-.67.69H25.2a.68.68,0,0,1-.67-.69v-4a.68.68,0,0,1,.67-.69h4.7A.68.68,0,0,1,30.57,51.57Z" /><path d="M72.2,68.08A13.21,13.21,0,1,0,85.37,81.29,13.21,13.21,0,0,0,72.2,68.08ZM72.2,91a9.66,9.66,0,1,1,9.66-9.66A9.67,9.67,0,0,1,72.2,91Z" /><path d="M72.2,73.64a7.66,7.66,0,1,0,7.66,7.65A7.66,7.66,0,0,0,72.2,73.64Zm3,8.65h-3a1,1,0,0,1-1-1V76.72a1,1,0,0,1,2,0v3.57h2a1,1,0,0,1,0,2Z" /></svg>
+                                                    <br />
+                                                    <small>Anonim Şirket</small>
+                                                </label>
+                                            </div>
+                                            <div class="form-check me-3">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3"  name="companyType">
+                                                <label class="form-check-label border rounded text-center p-2 border-primary shadow" for="flexCheckChecked3">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 95 95" width="25" height="25"><path d="M60.06,5.9v8.15L22.14,9.12V1.66a1.23,1.23,0,0,1,.42-.93,1.18,1.18,0,0,1,1-.3L59,4.68A1.22,1.22,0,0,1,60.06,5.9Z" /><path d="M49.28,65.11v16H32.92v-16a.46.46,0,0,1,.45-.46H48.84A.45.45,0,0,1,49.28,65.11Z" /><path d="M65.47,16.77l-43.82-5.7a1,1,0,0,1-.51.14,1,1,0,0,1-.72-.3l-3.59-.47a.37.37,0,0,0-.3.09.38.38,0,0,0-.13.3V81.06H30.92v-16a2.46,2.46,0,0,1,2.45-2.46H48.84a2.45,2.45,0,0,1,2.44,2.46v16H57a15.23,15.23,0,0,1,8.78-13.64V17.16A.4.4,0,0,0,65.47,16.77ZM32.57,55.58a2.69,2.69,0,0,1-2.67,2.69H25.2a2.69,2.69,0,0,1-2.67-2.69v-4a2.69,2.69,0,0,1,2.67-2.69h4.7a2.69,2.69,0,0,1,2.67,2.69Zm0-13.28A2.69,2.69,0,0,1,29.9,45H25.2a2.69,2.69,0,0,1-2.67-2.69v-4A2.69,2.69,0,0,1,25.2,35.6h4.7a2.69,2.69,0,0,1,2.67,2.69Zm0-13.28a2.69,2.69,0,0,1-2.67,2.69H25.2A2.69,2.69,0,0,1,22.53,29V25a2.69,2.69,0,0,1,2.67-2.69h4.7A2.69,2.69,0,0,1,32.57,25ZM46.13,55.58a2.7,2.7,0,0,1-2.68,2.69H38.76a2.69,2.69,0,0,1-2.68-2.69v-4a2.69,2.69,0,0,1,2.68-2.69h4.69a2.7,2.7,0,0,1,2.68,2.69Zm0-13.28A2.7,2.7,0,0,1,43.45,45H38.76a2.69,2.69,0,0,1-2.68-2.69v-4a2.69,2.69,0,0,1,2.68-2.69h4.69a2.7,2.7,0,0,1,2.68,2.69Zm0-13.28a2.7,2.7,0,0,1-2.68,2.69H38.76A2.69,2.69,0,0,1,36.08,29V25a2.69,2.69,0,0,1,2.68-2.69h4.69A2.7,2.7,0,0,1,46.13,25ZM59.68,55.58A2.69,2.69,0,0,1,57,58.27H52.31a2.69,2.69,0,0,1-2.68-2.69v-4a2.69,2.69,0,0,1,2.68-2.69H57a2.69,2.69,0,0,1,2.68,2.69Zm0-13.28A2.69,2.69,0,0,1,57,45H52.31a2.69,2.69,0,0,1-2.68-2.69v-4a2.69,2.69,0,0,1,2.68-2.69H57a2.69,2.69,0,0,1,2.68,2.69Zm0-13.28A2.69,2.69,0,0,1,57,31.71H52.31A2.69,2.69,0,0,1,49.63,29V25a2.69,2.69,0,0,1,2.68-2.69H57A2.69,2.69,0,0,1,59.68,25Z" /><path d="M57.68,25v4a.68.68,0,0,1-.68.69H52.31a.69.69,0,0,1-.68-.69V25a.69.69,0,0,1,.68-.69H57A.68.68,0,0,1,57.68,25Z" /><path d="M44.13,25v4a.69.69,0,0,1-.68.69H38.76a.68.68,0,0,1-.68-.69V25a.68.68,0,0,1,.68-.69h4.69A.69.69,0,0,1,44.13,25Z" /><path d="M30.57,25v4a.68.68,0,0,1-.67.69H25.2a.68.68,0,0,1-.67-.69V25a.68.68,0,0,1,.67-.69h4.7A.68.68,0,0,1,30.57,25Z" /><path d="M30.57,38.29v4a.68.68,0,0,1-.67.69H25.2a.68.68,0,0,1-.67-.69v-4a.68.68,0,0,1,.67-.69h4.7A.68.68,0,0,1,30.57,38.29Z" /><path d="M44.13,38.29v4a.69.69,0,0,1-.68.69H38.76a.68.68,0,0,1-.68-.69v-4a.68.68,0,0,1,.68-.69h4.69A.69.69,0,0,1,44.13,38.29Z" /><path d="M57.68,38.29v4A.68.68,0,0,1,57,43H52.31a.69.69,0,0,1-.68-.69v-4a.69.69,0,0,1,.68-.69H57A.68.68,0,0,1,57.68,38.29Z" /><path d="M57.68,51.57v4a.68.68,0,0,1-.68.69H52.31a.69.69,0,0,1-.68-.69v-4a.69.69,0,0,1,.68-.69H57A.68.68,0,0,1,57.68,51.57Z" /><path d="M44.13,51.57v4a.69.69,0,0,1-.68.69H38.76a.68.68,0,0,1-.68-.69v-4a.68.68,0,0,1,.68-.69h4.69A.69.69,0,0,1,44.13,51.57Z" /><path d="M30.57,51.57v4a.68.68,0,0,1-.67.69H25.2a.68.68,0,0,1-.67-.69v-4a.68.68,0,0,1,.67-.69h4.7A.68.68,0,0,1,30.57,51.57Z" /><path d="M72.2,68.08A13.21,13.21,0,1,0,85.37,81.29,13.21,13.21,0,0,0,72.2,68.08ZM72.2,91a9.66,9.66,0,1,1,9.66-9.66A9.67,9.67,0,0,1,72.2,91Z" /><path d="M72.2,73.64a7.66,7.66,0,1,0,7.66,7.65A7.66,7.66,0,0,0,72.2,73.64Zm3,8.65h-3a1,1,0,0,1-1-1V76.72a1,1,0,0,1,2,0v3.57h2a1,1,0,0,1,0,2Z" /></svg>
+                                                    <br />
+                                                    <small>Şahıs Şirket</small>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Açıklama</label>
-                                        <textarea  asp-for="Description" class="form-control">
+                                        <textarea  asp-for="Description" class="form-control form-control-light">
                                         </textarea>
                                     </div>
                                 </div>
@@ -110,11 +141,11 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">ERP Kimliği</label>
-                                        <input type="text" class="form-control" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.ErpId">
+                                        <input type="text" class="form-control form-control-light" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.ErpId">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Mevcut Kod</label>
-                                        <input type="text" class="form-control" placeholder="Mevcut Kod" aria-label="Mevcut Kod" asp-for="@Model.CurrentCode">
+                                        <input type="text" class="form-control form-control-light" placeholder="Mevcut Kod" aria-label="Mevcut Kod" asp-for="@Model.CurrentCode">
                                     </div>
                                 </div>
                             </div>
@@ -130,16 +161,16 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Kimlik Numarası</label>
-                                        <input type="text" class="form-control" placeholder="Kimlik Numarası" aria-label="Kimlik Numarası" asp-for="@Model.IdentificationNumber">
+                                        <input type="text" class="form-control form-control-light" placeholder="Kimlik Numarası" aria-label="Kimlik Numarası" asp-for="@Model.IdentificationNumber">
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Vergi Numarası</label>
-                                        <input type="text" class="form-control" placeholder="Vergi Numarası" aria-label="Vergi Numarası" asp-for="@Model.TaxNumber">
+                                        <input type="text" class="form-control form-control-light" placeholder="Vergi Numarası" aria-label="Vergi Numarası" asp-for="@Model.TaxNumber">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Vergi Dairesi</label>
-                                        <input type="text" class="form-control" placeholder="Vergi Dairesi" aria-label="Vergi Numarası" asp-for="@Model.TaxOffice">
+                                        <input type="text" class="form-control form-control-light" placeholder="Vergi Dairesi" aria-label="Vergi Numarası" asp-for="@Model.TaxOffice">
                                     </div>
                                 </div>
                             </div>
@@ -155,23 +186,23 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Özel Alan 1</label>
-                                        <input type="text" class="form-control" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.SpecialArea1">
+                                        <input type="text" class="form-control form-control-light" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.SpecialArea1">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Özel Alan 2</label>
-                                        <input type="text" class="form-control" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.SpecialArea2">
+                                        <input type="text" class="form-control form-control-light" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.SpecialArea2">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Özel Alan 3</label>
-                                        <input type="text" class="form-control" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.SpecialArea3">
+                                        <input type="text" class="form-control form-control-light" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.SpecialArea3">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Özel Alan 4</label>
-                                        <input type="text" class="form-control" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.SpecialArea4">
+                                        <input type="text" class="form-control form-control-light" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.SpecialArea4">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Özel Alan 5</label>
-                                        <input type="text" class="form-control" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.SpecialArea5">
+                                        <input type="text" class="form-control form-control-light" placeholder="ERP Kimliği" aria-label="ERP Kimliği" asp-for="@Model.SpecialArea5">
                                     </div>
                                 </div>
                             </div>

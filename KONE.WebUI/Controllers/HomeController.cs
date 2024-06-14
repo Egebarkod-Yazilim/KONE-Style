@@ -48,11 +48,7 @@ namespace KONE.KOne.WebUI.Controllers
         }
 
 
-        [HttpGet]
-        public async Task<IActionResult> Defines()
-        {
-            return View();
-        }
+
 
 
         [HttpGet]

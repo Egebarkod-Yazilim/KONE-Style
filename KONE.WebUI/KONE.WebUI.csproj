@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\Theme\HTML\dist\assets\images\flags\tr-flag.jpg\**" />
+    <Content Remove="wwwroot\Theme\HTML\dist\assets\images\flags\tr-flag.jpg\**" />
+    <EmbeddedResource Remove="wwwroot\Theme\HTML\dist\assets\images\flags\tr-flag.jpg\**" />
+    <None Remove="wwwroot\Theme\HTML\dist\assets\images\flags\tr-flag.jpg\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\Theme\HTML\src\assets\icon-fonts\bootstrap-icons\icons\.github\preview.png" />
   </ItemGroup>
 
@@ -39,6 +46,7 @@
   <ItemGroup>
     <Folder Include="Extensions\" />
     <Folder Include="Views\CurrentCard\Components\" />
+    <Folder Include="Views\Shared\Components\NewFolder\" />
     <Folder Include="wwwroot\Theme\HTML\dist\assets\libs\chart.js\docs\" />
     <Folder Include="wwwroot\Theme\HTML\dist\assets\libs\choices.js\src\" />
     <Folder Include="wwwroot\Theme\HTML\dist\assets\libs\datatables.net-bs5\types\" />
