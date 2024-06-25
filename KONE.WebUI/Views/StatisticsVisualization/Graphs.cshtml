@@ -1,3 +1,551 @@
 ﻿@{
     Layout = "_Layout";
 }
+<button id="download-pdf-button">İNDİR</button>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card custom-card">
+            <div class="card-header  justify-content-between">
+                <div class="card-title">
+                    Ürünler
+                </div>
+                <div class="dropdown">
+                    <a aria-label="anchor" href="javascript:void(0);" class="btn btn-icon btn-sm btn-light" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fe fe-more-vertical"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="javascript:void(0);">Haftalık</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0);">Aylık</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0);">Yıllık</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled crm-top-deals mb-0">
+                    <li>
+                        <button id="elmaButton" type="button" class="list-group-item list-group-item-action active rounded" aria-current="true">
+                            <div class="d-flex align-items-top flex-wrap">
+                                <div class="me-2">
+                                    <span class="avatar avatar-sm avatar-rounded">
+                                        <img src="~/images/apple.png" />
+                                    </span>
+                                </div>
+                                <div class="flex-fill">
+                                    <p class="fw-semibold mb-0">Elma</p>
+                                </div>
+                            </div>
+                        </button>
+                    </li>
+                    <li>
+                        <button id="portakalButton" type="button" class="list-group-item list-group-item-action rounded" aria-current="true">
+                            <div class="d-flex align-items-top flex-wrap">
+                                <div class="me-2">
+                                    <span class="avatar avatar-sm avatar-rounded">
+                                        <img src="~/images/orange.png" />
+
+                                    </span>
+                                </div>
+                                <div class="flex-fill">
+                                    <p class="fw-semibold mb-0">Portakal</p>
+                                </div>
+                            </div>
+                        </button>
+                        
+                    </li>
+                    <li>
+                        <button id="narButton" type="button" class="list-group-item list-group-item-action rounded" aria-current="true">
+                            <div class="d-flex align-items-top flex-wrap">
+                                <div class="me-2">
+                                    <span class="avatar avatar-sm avatar-rounded">
+                                        <img src="~/images/pomegranate.png" />
+                                    </span>
+                                </div>
+                                <div class="flex-fill">
+                                    <p class="fw-semibold mb-0">Nar</p>
+                                </div>
+                            </div>
+                        </button>
+                      
+                    </li>
+                    <li>
+                        <button id="cilekButton" type="button" class="list-group-item list-group-item-action rounded" aria-current="true">
+                            <div class="d-flex align-items-top flex-wrap">
+                                <div class="me-2">
+                                    <span class="avatar avatar-sm avatar-rounded">
+                                        <img src="~/images/strawberry.png" />
+                                    </span>
+                                </div>
+                                <div class="flex-fill">
+                                    <p class="fw-semibold mb-0">Çilek</p>
+                                </div>
+                            </div>
+                        </button>
+                       
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="card custom-card">
+            <div class="card-header">
+                <div class="card-title">Ürüne Göre Kişi Bazında Satış Bar Grafiği</div>
+                <div class="dropdown">
+                    <select id="chartType">
+                        <option value="bar">Sütun Grafiği</option>
+                        <option value="line">Çizgi Grafiği</option>
+                    </select>
+
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="echart1" class="echart-charts" _echarts_instance_="ec_1718866577205" style="user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><div style="position: relative; width: 748px; height: 320px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"><canvas data-zr-dom-id="zr_0" width="748" height="320" style="position: absolute; left: 0px; top: 0px; width: 748px; height: 320px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card custom-card">
+            <div class="card-header  justify-content-between">
+                <div class="card-title">
+                    Müstahsiller
+                </div>
+              
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled crm-top-deals mb-0">
+                    <li>
+                        <div class="dropdown">
+                            <select id="farmers" class="form-select">
+                                <option selected>Lütfen Müstahsil Seçiniz</option>
+                                <option value="1">Aslı</option>
+                                <option value="2">Mehmet</option>
+                                <option value="3">Burhan</option>
+                                <option value="4">Osman</option>
+                                <option value="5">Hatice</option>
+                                <option value="6">Ayşe</option>
+                                <option value="7">Mahmut</option>
+                                <option value="8">Orhan</option>
+                                <option value="9">Veli</option>
+                                <option value="10">Alp</option>
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="card custom-card">
+            <div class="card-header">
+                <div class="card-title">müstahsilere göre alınan ürünlerin dağılımı</div>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <label class="form-label" id="farmername"></label>
+                </div>
+                <div id="echart2" class="echart-charts" _echarts_instance_="ec_1718866577205" style="user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><div style="position: relative; width: 748px; height: 320px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"><canvas data-zr-dom-id="zr_0" width="748" height="320" style="position: absolute; left: 0px; top: 0px; width: 748px; height: 320px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="card custom-card">
+            <div class="card-header  justify-content-between">
+                <div class="card-title">
+                    İllere Göre Kalite
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled crm-top-deals mb-0">
+                    <li>
+                        <div class="dropdown">
+                            <select id="provinces" class="form-select">
+                                <option selected>Lütfen İl Seçiniz</option>
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="card custom-card">
+            <div class="card-header">
+                <div class="card-title">İllere göre alınan ürünlerin Kalite dağılımı</div>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <label class="form-label" id="İl"></label>
+                </div>
+                <div id="charts-container" class="row"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>// ECharts örneği oluşturma
+        var chartDom = document.getElementById('echart1');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        var option = {
+            title: {
+                text: 'Kişi Bazında Satışlar'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: {
+                data: ['Satış Miktarı']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'category',
+                data: ['Ahmet', 'Mehmet', 'Aslı', 'Ayşe', 'Fatma', 'Mustafa','Arda','Burhan','Dursun','Hatice'] // İlgili kişilerin adlarını buraya ekleyin
+            },
+            yAxis: {
+                type: 'value',
+                name: 'Satış Miktarı'
+            },
+            series: [
+                {
+                    name: 'Satış Miktarı',
+                    type: 'bar',
+                    data: [123, 450, 80, 148, 159, 946,207,520,684,754] // İlgili kişilerin sattıkları miktarı buraya ekleyin
+                }
+            ]
+        };
+
+
+        // Grafik seçeneklerini uygulama
+        option && myChart.setOption(option);
+
+
+        $(document).ready(function () {
+            $.ajax({
+                url: '/StatisticsVisualization/ProvinceList',
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    var select = $('#provinces');
+                    $.each(data, function (index, province) {
+                        select.append($('<option>', {
+                            value: province.id, // ID alanının adını kontrol edin
+                            text: province.name // Name alanının adını kontrol edin
+                        }));
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error fetching provinces:', error);
+                }
+            });
+
+            $(".list-group-item").click(function () {
+                $(".list-group-item").removeClass("active");
+                $(this).addClass("active");
+            });
+
+            // İlgili butonların referanslarını alıyoruz
+            const elmaButton = document.getElementById('elmaButton');
+            const portakalButton = document.getElementById('portakalButton');
+            const narButton = document.getElementById('narButton');
+            const cilekButton = document.getElementById('cilekButton');
+
+            // Her bir butona tıklama olayı ekliyoruz
+            elmaButton.addEventListener('click', function () {
+                option.series[0].data = [123, 450, 80, 148, 159, 946, 207, 520, 684, 754]; // Elma için satış miktarlarını güncelliyoruz
+                option.title.text = 'Elma Satışları'; // Başlığı güncelliyoruz
+                myChart.setOption(option); // Grafikleri güncelliyoruz
+            });
+
+            portakalButton.addEventListener('click', function () {
+                option.series[0].data = [323, 250, 580, 48, 359, 846, 607, 720, 84, 554]; // Portakal için satış miktarlarını güncelliyoruz
+                option.title.text = 'Portakal Satışları'; // Başlığı güncelliyoruz
+                myChart.setOption(option); // Grafikleri güncelliyoruz
+            });
+
+            narButton.addEventListener('click', function () {
+                option.series[0].data = [160, 498, 134, 68, 735, 197, 354, 72, 546, 177]; // Nar için satış miktarlarını güncelliyoruz
+                option.title.text = 'Nar Satışları'; // Başlığı güncelliyoruz
+                myChart.setOption(option); // Grafikleri güncelliyoruz
+            });
+
+            cilekButton.addEventListener('click', function () {
+                option.series[0].data = [10, 70, 150, 379, 415, 761, 469, 643, 245, 684]; // Çilek için satış miktarlarını güncelliyoruz
+                option.title.text = 'Çilek Satışları'; // Başlığı güncelliyoruz
+                myChart.setOption(option); // Grafikleri güncelliyoruz
+            });
+
+
+            // Dropdown menüsünün referansını alıyoruz
+            const chartTypeSelect = document.getElementById('chartType');
+
+            // Dropdown menüsünün değişiklik olayını dinliyoruz
+            chartTypeSelect.addEventListener('change', function () {
+                const selectedChartType = chartTypeSelect.value; // Seçilen grafik türünü alıyoruz
+
+                // Seçilen grafik türüne göre option'u güncelliyoruz
+                if (selectedChartType === 'bar') {
+                    option.series[0].type = 'bar';
+                    option.yAxis.type = 'value'; // Çizgi grafiği için y ekseninin tipini güncelliyoruz
+                    option.series[0].label = {
+                        show: true,
+                        position: 'top',
+                        formatter: '{c}' // Çubuk grafiği için etiket formatını güncelliyoruz
+                    };
+                } else if (selectedChartType === 'line') {
+                    option.series[0].type = 'line';
+                    option.yAxis.type = 'value'; // Çizgi grafiği için y ekseninin tipini güncelliyoruz
+                } 
+
+
+                // Grafikleri güncelliyoruz
+                myChart.setOption(option);
+            });
+
+
+
+
+            
+
+        });
+
+
+
+        var chartDom2 = document.getElementById('echart2');
+        var myChart2 = echarts.init(chartDom2);
+        var option2;
+
+        var option2 = {
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b}: {c} ({d}%)'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 10,
+                data: ['İhracat', 'İç Piyasa', 'Suluk']
+            },
+            series: [
+                {
+                    name: 'Müstahsil Ürün Dağılımı',
+                    type: 'pie', // Pie olarak bırakılıyor
+                    radius: ['50%', '70%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        show: true,
+                        formatter: '{b}: {d}%', // Her dilim üzerinde kategori adı ve yüzdelik değeri gösteriliyor
+                        fontSize: 14,
+                        fontWeight: 'bold'
+                    },
+                    emphasis: {
+                        label: {
+                            show: true,
+                            fontSize: 20,
+                            fontWeight: 'bold'
+                        }
+                    },
+                    labelLine: {
+                        show: false
+                    },
+                    data: []
+                }
+            ]
+        };
+
+
+        var farmersData = {
+            '1': [60, 20, 20],
+            '2': [50, 30, 20],
+            '3': [40, 40, 20],
+            '4': [70, 15, 15],
+            '5': [55, 25, 20],
+            '6': [45, 35, 20],
+            '7': [65, 20, 15],
+            '8': [75, 15, 10],
+            '9': [60, 25, 15],
+            '10': [50, 30, 20]
+        };
+
+        // Dropdown değiştiğinde grafik güncellemesi
+        var selectElement = document.getElementById('farmers');
+        var farmerNameElement = document.getElementById('farmername');
+        selectElement.addEventListener('change', function () {
+            var selectedFarmer = selectElement.value;
+            var selectedOptionIndex = selectElement.selectedIndex;
+            var selectedFarmerName = selectElement.options[selectedOptionIndex].innerText;
+            var farmerData = farmersData[selectedFarmer];
+            farmerNameElement.innerText = selectedFarmerName;
+            updateChart(farmerData);
+        });
+
+        function updateChart(data) {
+            option2.series[0].data = [
+                { value: data[0], name: 'İhracat' },
+                { value: data[1], name: 'İç Piyasa' },
+                { value: data[2], name: 'Suluk' }
+            ];
+            myChart2.setOption(option2);
+        }
+
+        // İlk başta bir müstahsilin grafiğini göster
+        var initialFarmer = selectElement.value;
+
+        myChart2.setOption(option2);
+
+
+        // İl seçildiğinde grafik oluştur
+        $('#provinces').change(function () {
+            var provinceId = $(this).val();
+            if (provinceId) {
+                // Rastgele veriler oluştur
+                var data = generateRandomData();
+                createChart(data);
+            }
+        });
+
+        // Rastgele veri oluşturma fonksiyonu
+        function generateRandomData() {
+            var producers = ['Aslı', 'Mehmet', 'Burhan', 'Orhan', 'Tekin'];
+            var data = [];
+            for (var i = 0; i < producers.length; i++) {
+                data.push({
+                    name: producers[i],
+                    productionAmount: Math.floor(Math.random() * 100) + 1, // 1 ile 100 arasında rastgele miktar
+                    productionQuality: Math.floor(Math.random() * 100) + 1 // 1 ile 100 arasında rastgele kalite
+                });
+            }
+            return data;
+        }
+
+
+
+        // ECharts grafiğini oluştur
+        function createChart(data, provinceId) {
+            var chartsContainer = document.getElementById('charts-container');
+
+            // Yeni kart için bir div oluştur
+            var cardDiv = document.createElement('div');
+            cardDiv.className = 'card col-md-6 p-2';
+            cardDiv.style.marginBottom = '20px'; // Grafik kartının altında 20px'lik bir boşluk bırakır
+
+            // Seçilen seçim kutusu metnini al
+            var selectedProvinceText = $('#provinces option:selected').text();
+
+            // Satır oluştur
+            var rowDiv = document.createElement('div');
+            rowDiv.className = 'row align-items-center'; // Satırı dikeyde hizalar
+            rowDiv.style.marginBottom = '10px'; // Satırın altında 10px'lik bir boşluk bırakır
+
+            // Seçilen seçim kutusu metnini içeren div
+            var textDiv = document.createElement('div');
+            textDiv.className = 'col-md-6'; // İl metni ve buton yarımşar genişlikte olsun
+            textDiv.textContent = selectedProvinceText;
+            textDiv.style.fontSize = "15px";
+            textDiv.style.fontWeight = "bolder";
+            rowDiv.appendChild(textDiv);
+
+            // Kapatma butonu
+            var closeButton = document.createElement('button');
+            closeButton.className = 'close-btn btn btn-danger';
+            closeButton.innerHTML = "&#x2716;"; // Unicode kapatma işareti (✖)
+            closeButton.onclick = function () {
+                chartsContainer.removeChild(cardDiv);
+            };
+
+            // Buton divini oluştur ve stili ayarla
+            var closeButtonDiv = document.createElement('div');
+            closeButtonDiv.className = 'col-md-6 d-flex justify-content-end align-items-center'; // Butonu sağa ve dikeyde hizalar
+            closeButtonDiv.style.height = '100%'; // Buton divinin yüksekliğini 100% olarak ayarla
+
+            // Butonu buton divine ekle
+            closeButtonDiv.appendChild(closeButton);
+
+            // Satır divine buton divini ekle
+            rowDiv.appendChild(closeButtonDiv);
+
+
+            // Kartı ve satırı chartsContainer'a ekle
+            cardDiv.appendChild(rowDiv);
+            chartsContainer.appendChild(cardDiv);
+
+            // Yeni grafik için bir div oluştur
+            var chartDiv = document.createElement('div');
+            chartDiv.style.width = '100%'; // Grafik kartının tam genişliğinde olmasını sağlar
+            chartDiv.style.height = '400px';
+            cardDiv.appendChild(chartDiv);
+
+            var myChart = echarts.init(chartDiv);
+            var option = {
+                title: {
+                    text: "",
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['Üretim Miktarı', 'Üretim Kalitesi']
+                },
+                xAxis: {
+                    type: 'category',
+                    data: data.map(item => item.name) // Müstahsil isimleri
+                },
+                yAxis: [{
+                    type: 'value',
+                    name: 'Miktar'
+                }, {
+                    type: 'value',
+                    name: 'Kalite'
+                }],
+                series: [{
+                    name: 'Üretim Miktarı',
+                    type: 'bar',
+                    data: data.map(item => item.productionAmount) // Üretim miktarları
+                }, {
+                    name: 'Üretim Kalitesi',
+                    type: 'line',
+                    yAxisIndex: 1,
+                    data: data.map(item => item.productionQuality) // Üretim kaliteleri
+                }]
+            };
+            myChart.setOption(option);
+
+
+
+            
+
+
+        }
+
+        // PDF dosyası oluşturmak için yeni bir jsPDF nesnesi oluşturun
+        var pdf = new jsPDF();
+
+        // Butona tıklama olayını dinleyin
+        $('#download-pdf-button').click(function () {
+            // ECharts grafiğini yakalayın
+            var chartCanvas = document.querySelector('#echart1 canvas');
+            // Grafik boyutlarını alın
+            var chartWidth = chartCanvas.width;
+            var chartHeight = chartCanvas.height;
+            // Grafik verilerini alın
+            var chartDataUrl = chartCanvas.toDataURL('image/jpeg'); // Grafiği resim olarak alın
+            // PDF dosyasına resmi ekleme
+            pdf.addImage(chartDataUrl, 'JPEG', 10, 10, chartWidth * 0.5, chartHeight * 0.5); // Resmi PDF dosyasına ekleyin
+            // PDF dosyasını indirin
+            pdf.save('grafik.pdf');
+        });
+    </script>
+}
